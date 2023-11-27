@@ -3,6 +3,10 @@ import Post from '../Models/postsModel.js'
 import Comment from '../Models/commentsModel.js'
 import bcrypt from 'bcrypt'
 
+
+//--------------------------------------------
+//-------------- Review User -----------------
+//--------------------------------------------
 export const PreviewUser = async (req, res) => {
     const userId = req.params.id
     try {
@@ -20,6 +24,12 @@ export const PreviewUser = async (req, res) => {
         return res.status(500).json({ err: 'Something went wrong' })
     }
 }
+
+
+
+//--------------------------------------------
+//-------------- Update User -----------------
+//--------------------------------------------
 export const updateUser = async (req, res) => {
     const { firstname, lastname, email, password, confirmPassword } = req.body
     const userId = req.params.id
@@ -55,6 +65,10 @@ export const updateUser = async (req, res) => {
     }
 }
 
+
+//--------------------------------------------
+//-------------- Delete User -----------------
+//--------------------------------------------
 export const deleteUser = async (req, res) => {
     const userId = req.params.id
     try {

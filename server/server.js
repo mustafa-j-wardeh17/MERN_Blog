@@ -6,6 +6,7 @@ import authRouter from "./Routes/authRoute.js"
 import userRouter from './Routes/userRoute.js'
 import dotenv from 'dotenv'
 import postRouter from "./Routes/postsRoute.js";
+import commentRouter from "./Routes/commentRoute.js";
 
 dotenv.config()
 
@@ -25,6 +26,7 @@ app.use(cookieParser())
 app.use('/auth', authRouter)
 app.use('/user', userRouter)
 app.use('/post', postRouter)
+app.use('/comment', commentRouter)
 
 
 app.listen(8016, () => {

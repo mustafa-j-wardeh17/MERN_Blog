@@ -3,6 +3,10 @@ import User from '../Models/usersModel.js'
 import Post from '../Models/postsModel.js'
 import Comment from '../Models/commentsModel.js'
 
+
+//--------------------------------------------
+//---------------Create Post -----------------
+//--------------------------------------------
 export const createPost = async (req, res) => {
     const { title, desc, username, image, categories } = req.body
     const { userId } = req.params
@@ -34,6 +38,10 @@ export const createPost = async (req, res) => {
     }
 }
 
+
+//--------------------------------------------
+//----------------Get Posts ------------------
+//--------------------------------------------
 export const getAllPost = async (req, res) => {
     try {
         const posts = await Post.find()
@@ -47,6 +55,11 @@ export const getAllPost = async (req, res) => {
     }
 }
 
+
+
+//--------------------------------------------
+//----------------Get Post -------------------
+//--------------------------------------------
 export const getPost = async (req, res) => {
     const { postId } = req.params
     try {
@@ -61,6 +74,12 @@ export const getPost = async (req, res) => {
     }
 }
 
+
+
+
+//--------------------------------------------
+//--------------Update Post ------------------
+//--------------------------------------------
 export const updatePost = async (req, res) => {
     const { title, desc, username, image, categories } = req.body
     const {postId} = req.params
@@ -91,6 +110,11 @@ export const updatePost = async (req, res) => {
     }
 }
 
+
+
+//--------------------------------------------
+//---------------Delete Post -----------------
+//--------------------------------------------
 export const deletePost = async (req, res) => {
     const { postId } = req.params;
     try {

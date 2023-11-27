@@ -2,6 +2,11 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import User from '../Models/usersModel.js'
 
+
+
+//--------------------------------------------
+//-------------Register User -----------------
+//--------------------------------------------
 export const registerController = async (req, res) => {
     const { firstname, lastname, email, password, confirmPassword } = req.body
     if (!firstname && !lastname && !email && !password && !confirmPassword) {
@@ -33,6 +38,11 @@ export const registerController = async (req, res) => {
         return res.status(500).json({ err: 'Something went wrong' })
     }
 }
+
+
+//--------------------------------------------
+//----------------Login User -----------------
+//--------------------------------------------
 export const loginController = async (req, res) => {
     const { email, password } = req.body
     if (!email && !password) {
