@@ -5,8 +5,8 @@ const commentsSchema = new mongoose.Schema({
     author: { type: String, required: true },
     userId: { type: String, required: true, unique: true },
     postId: { type: String, required: true },
-},{timestamps:true})
+}, { timestamps: true })
 
-const commentsModel = mongoose.model('users', commentsSchema)
+const commentsModel = mongoose.model('comments', commentsSchema)
 
 export default commentsModel
