@@ -30,14 +30,14 @@ const PostDetails = () => {
                 <div className='flex flex-col space-y-3' >
                     {
                         [1, 2, 3].map((item) => (
-                            <CommentCard />
+                            <CommentCard key={item}/>
                         ))
                     }
                 </div>
             </div>
             <div className='w-full flex justify-between space-x-2'>
-                <input className='w-[87%] border border-neutral-500 rounded-md' type='text'/>
-                <button className='w-[13%] py-2 text-center text-[14px] font-bold text-white bg-black'>Add Comment</button>
+                <input className='md:w-[87%] w-[80%] border border-neutral-500 rounded-md' type='text'/>
+                <button className='md:w-[13%] w-[20%] py-2 text-center md:text-[14px]  text-[12px] font-bold text-white bg-black'>Add Comment</button>
             </div>
         </div>
     )

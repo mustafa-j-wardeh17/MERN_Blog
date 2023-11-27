@@ -11,7 +11,7 @@ import MainRoute from './MainRoute'
 function App() {
 
   return (
-    <div className=' py-4'>
+    <div className=' '>
       <Routes>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
