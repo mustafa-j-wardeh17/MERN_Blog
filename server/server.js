@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import authRouter from "./Routes/authRoute.js"
 import userRouter from './Routes/userRoute.js'
 import dotenv from 'dotenv'
+import postRouter from "./Routes/postsRoute.js";
 
 dotenv.config()
 
@@ -23,6 +24,7 @@ app.use(cookieParser())
 
 app.use('/auth', authRouter)
 app.use('/user', userRouter)
+app.use('/post', postRouter)
 
 
 app.listen(8016, () => {

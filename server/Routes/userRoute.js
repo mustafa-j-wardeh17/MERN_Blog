@@ -6,7 +6,7 @@ import { verifyToken } from '../verifyToken.js'
 const userRouter = express.Router()
 
 userRouter.get('/:id', PreviewUser)
-userRouter.post('/:id', verifyToken, updateUser)
+userRouter.patch('/:id', verifyToken, updateUser)
 userRouter.delete('/:id', verifyToken, deleteUser)
 
 

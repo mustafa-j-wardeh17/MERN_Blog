@@ -6,6 +6,7 @@ const postsSchema = new mongoose.Schema({
     username: { type: String, required: true },
     userId: { type: String, required: true },
     categories: { type: Array },
+    image: { type: String },
 }, { timestamps: true })
 
 const postsModel = mongoose.model('posts', postsSchema)
