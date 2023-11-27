@@ -5,7 +5,7 @@ import Posts from '../components/HomeComponents/Posts'
 
 const Home = () => {
     return (
-        <div className='w-full flex flex-col'>
+        <div className='w-full flex flex-col md:px-[80px] px-8'>
             <Hero />
             <Posts />
         </div>

@@ -30,10 +30,10 @@ const Navbar = () => {
         setMenu(false)
     }
     return (
-        <div className='flex justify-between items-center '>
+        <div className='flex justify-between items-center md:px-[80px] px-8'>
             <div className='flex items-center space-x-2'>
                 <img src='/logo.svg' className='w-[30px]' />
-                <h3>CodeBlug</h3>
+                <h3>CodeBlog</h3>
             </div>
             <form onSubmit={handleSubmitSearch} className='relative flex items-center'>
                 <input onBlur={() => handleHideSearchIcon()}
@@ -68,6 +68,9 @@ const Navbar = () => {
             <div className={`${Menu ? 'flex' : 'hidden'} absolute bg-black  flex-col justify-center items-center w-[120px] px-2 py-3 space-y-2 sm:right-12 sm:top-12 right-2 top-14  rounded-md `}>
                 <Link to={'/'} onClick={() => setMenu(false)} className='text-gray-200 hover:text-white' >
                     Home
+                </Link>
+                <Link to={'/myposts'} onClick={() => setMenu(false)} className='text-gray-200 hover:text-white' >
+                    Add Post
                 </Link>
                 <Link to={'/myposts'} onClick={() => setMenu(false)} className='text-gray-200 hover:text-white' >
                     My Posts

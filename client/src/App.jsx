@@ -11,7 +11,7 @@ import MainRoute from './MainRoute'
 function App() {
 
   return (
-    <div className='md:px-[80px] px-8 py-4'>
+    <div className=' py-4'>
       <Routes>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
