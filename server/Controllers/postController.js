@@ -82,7 +82,7 @@ export const getPost = async (req, res) => {
 //--------------------------------------------
 export const updatePost = async (req, res) => {
     const { title, desc, username, image, categories } = req.body
-    const {postId} = req.params
+    const { postId } = req.params
 
     if (!title && !desc && !username && image) {
         return res.status(401).json({ err: "Please fill all fields" })
@@ -95,7 +95,7 @@ export const updatePost = async (req, res) => {
             return res.status(400).json({ err: "Post does not found" })
         }
 
-        const updatedPost = await Post.findByIdAndUpdate(postId,{
+        const updatedPost = await Post.findByIdAndUpdate(postId, {
             title,
             desc,
             username,

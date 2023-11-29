@@ -1,26 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import PostCard from './PostCard'
+import axios from 'axios'
 
 const Posts = () => {
 
-    const [posts, setPosts] = useState([1, 2, 3, 4, 5, 6, 7, 8, 74, 4, 21,701,123,564])
+    const [posts, setPosts] = useState([])
     const [postsSlice, setPostsSlice] = useState([])
     const [postsSliceIndex, setPostsSliceIndex] = useState(1)
+
     useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await axios.get('/post/posts');
+                const postsData = await response.data;
+                setPosts(postsData)
+
+                return postsData
+
+            } catch (error) {
+                console.error('Error fetching posts:', error.message);
+            }
+        };
+        fetchPosts()
         const newPostsSlice = []
         if (posts.length > 6) {
             for (let i = 0; i < Math.ceil(posts.length) / 6; i++) {
                 let slice = posts.slice(i * 6, (i + 1) * 6)
-                console.log(slice)
                 newPostsSlice.push(slice)
                 setPostsSlice(newPostsSlice)
-                console.log(`post num ${i}` + postsSlice[i])
             }
         }
         else {
-            postsSlice = []
+            setPostsSlice([])
         }
-    }, [posts, postsSliceIndex])
+    }, [posts])
     return (
         <div className='py-12'>
             <h1 className='md:text-[28px] text-[20px] text-neutral-700 font-bold mb-8'>Recent Posts</h1>
@@ -28,11 +41,11 @@ const Posts = () => {
                 {
 
                     postsSlice.length > 0
-                        ? postsSlice[postsSliceIndex-1].map((index) => (
-                            <PostCard key={index} src={'/herocard1.jpg'} />
+                        ? postsSlice[postsSliceIndex - 1].map((data) => (
+                            <PostCard key={data._id} data={data} />
                         ))
-                        : posts.map((index) => (
-                            <PostCard key={index} src={'/herocard1.jpg'} />
+                        : posts.map((data) => (
+                            <PostCard key={data._id} data={data} />
                         ))
                 }
             </div>

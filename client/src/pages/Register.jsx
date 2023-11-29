@@ -17,7 +17,38 @@ const Register = () => {
   const navigate = useNavigate()
   const [err, setErr] = useState('')
 
-    ;
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    try {
+      setErr(false);
+      await axios.post('/auth/register', {
+        firstname: data.firstname,
+        lastname: data.lastname,
+        email: data.email,
+        password: data.password,
+        confirmPassword: data.confirmPassword
+      })
+
+      setData({
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      });
+      navigate('/login');
+
+    } catch (error) {
+      // Handle error response
+      if (error.response && error.response.status === 401) {
+        setErr(error.response.data.err);
+      } else {
+        console.error(error);
+        // Handle other errors
+      }
+    }
+  };
 
   const handleGoogleRegister = () => {
 
@@ -25,6 +56,7 @@ const Register = () => {
   const handleAppleRegister = () => {
 
   }
+
   return (
     <div className='w-full h-screen bg-purple-50/20 flex flex-col justify-center items-center'>
       <div className='shadow-lg shadow-green-100 flex flex-col justify-center rounded-md bg-white h-[90%] p-4  px-[60px] w-[420px] '>
@@ -49,7 +81,7 @@ const Register = () => {
 
           </div>
         </div>
-        <form onSubmit={(e) => { }} className='flex flex-col items-center  space-y-[6px] '>
+        <form onSubmit={handleRegister} className='flex flex-col items-center  space-y-[6px] '>
           <div className='flex space-x-2 justify-between'>
             <input value={data.firstname} onChange={(e) => setData({ ...data, firstname: e.target.value })} type="text" placeholder="firstname" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
             <input value={data.lastname} onChange={(e) => setData({ ...data, lastname: e.target.value })} type="text" placeholder="lastname" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />

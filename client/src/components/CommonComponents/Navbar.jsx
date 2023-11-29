@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { IoIosMenu } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
-
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Navbar = () => {
-    const isLoginnedIn = false
+    const { isAuth } = useSelector(state => state.blog)
     const navigate = useNavigate
     const [Menu, setMenu] = useState(false)
     const [searchIcon, setSearcgIcon] = useState(false)
@@ -30,8 +31,21 @@ const Navbar = () => {
         setSearchValue('')
     }
 
-    const handleLogout = () => {
+    const handleLogout = async () => {
         setMenu(false)
+        try {
+            const response = await axios.get('/auth/logout')
+            if (response.data.Status === "Success") {
+                location.reload()
+            }
+            else{
+                alert("error")
+            }
+        }
+        catch (error) {
+            console.log(error)
+        }
+
     }
     return (
         <div className='flex justify-between items-center mb-5 md:px-[80px] px-8'>
@@ -55,7 +69,7 @@ const Navbar = () => {
 
             </form>
             {
-                isLoginnedIn ?
+                isAuth ?
                     (
                         <div onClick={handleMenu} className='cursor-pointer text-neutral-600 hover:text-neutral-800'>
                             <IoIosMenu size={32} />
@@ -73,11 +87,11 @@ const Navbar = () => {
                 <Link to={'/'} onClick={() => setMenu(false)} className='text-gray-200 hover:text-white' >
                     Home
                 </Link>
-                <Link to={'/s'} onClick={() => setMenu(false)} className='text-gray-200 hover:text-white' >
-                    Add Post
-                </Link>
                 <Link to={'/myposts'} onClick={() => setMenu(false)} className='text-gray-200 hover:text-white' >
                     My Posts
+                </Link>
+                <Link to={'/createpost'} onClick={() => setMenu(false)} className='text-gray-200 hover:text-white' >
+                    Add Post
                 </Link>
                 <p onClick={() => handleLogout()} className='cursor-pointer text-gray-200 hover:text-white'>
                     Logout

@@ -60,9 +60,28 @@ export const loginController = async (req, res) => {
         const token = jwt.sign({ id: user._id, email: user.email, firstname: user.firstname, lastname: user.lastname }, process.env.SECRET_KEY, { expiresIn: '3d' })
 
         res.cookie("token", token).status(200)
-        res.send('Login Successfully')
+        res.status(200).json(user._id)
     }
     catch (err) {
         return res.status(500).json({ err: 'Something went wrong' })
     }
+}
+
+
+//--------------------------------------------
+//----------------Logout User-----------------
+//--------------------------------------------
+
+export const logoutController = (req, res) => {
+    res.clearCookie('token');
+    return res.json({ Status: "Success" })
+}
+
+
+//--------------------------------------------
+//----------------Get token-------------------
+//--------------------------------------------
+
+export const verifyUser = (req, res) => {
+    res.json(req.userId)
 }

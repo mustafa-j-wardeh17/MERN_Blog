@@ -1,14 +1,18 @@
 
 import express from 'express'
-import { loginController, registerController } from '../Controllers/authController.js'
+import { loginController, logoutController, registerController, verifyUser } from '../Controllers/authController.js'
+import { verifyToken } from '../verifyToken.js'
 
 
 const authRouter = express.Router()
 
-authRouter.post('/Register', registerController)
+authRouter.post('/register', registerController)
 
 
 authRouter.post('/login', loginController)
+authRouter.get('/logout', logoutController)
+
+authRouter.get('/verify',verifyToken ,verifyUser)
 
 
 

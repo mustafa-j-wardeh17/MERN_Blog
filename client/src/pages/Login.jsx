@@ -1,16 +1,43 @@
-import React, { useState } from 'react'
-
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { SetIsAuth, SetLoggendId } from '../redux/blogSlice/blogSlice';
 
 const Login = () => {
+  const navigate = useNavigate()
   const [data, setData] = useState({
     email: '',
     password: ''
   })
 
   const [err, setErr] = useState('')
+
+
+  const handleLogin = async (e) => {
+    e.preventDefault()
+    try {
+      await axios.post('/auth/login', { email: data.email, password: data.password })
+      setErr('')
+      setData({
+        email: '',
+        password: ''
+      })
+      navigate('/')
+    }
+    catch (error) {
+      if (error.response.status === 401 && error.response) {
+        setErr(error.response.data.err)
+      }
+      else {
+        setErr(error)
+      }
+    }
+
+
+  }
 
 
   return (
@@ -37,9 +64,9 @@ const Login = () => {
 
           </div>
         </div>
-        <form onSubmit={(e) => { }} className='flex flex-col items-center space-y-[6px] '>
-          <input value={data.email} onChange={(e) => { }} type="email" placeholder="Email" className='w-full text-[14px] py-3 px-[15px] text-neutral-600 border rounded-md  ' />
-          <input value={data.password} onChange={(e) => { }} type="password" placeholder="password" className='w-full text-[14px] py-3 px-[15px] text-neutral-600 border rounded-md ' />
+        <form onSubmit={handleLogin} className='flex flex-col items-center space-y-[6px] '>
+          <input value={data.email} onChange={(e) => { setData({ ...data, email: e.target.value }) }} type="email" placeholder="Email" className='w-full text-[14px] py-3 px-[15px] text-neutral-600 border rounded-md  ' />
+          <input value={data.password} onChange={(e) => { setData({ ...data, password: e.target.value }) }} type="password" placeholder="password" className='w-full text-[14px] py-3 px-[15px] text-neutral-600 border rounded-md ' />
           <button type="submit" className='flex items-center justify-center text-center text-neutral-100 font-bold bg-purple-600 p-2 w-full rounded-md shadow-md'>Login</button>
           {
             err !== null ?

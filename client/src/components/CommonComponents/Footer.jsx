@@ -6,7 +6,7 @@ const Footer = () => {
         <div className='md:px-[80px] px-8'>
             <div className='bg-neutral-700 w-full rounded-lg mt-12'>
                 <div className='flex flex-col items-center space-y-8 py-8'>
-                    <h1 className='font-bold text-white text-[24px]'>Interesting Stories | Updates | Guides</h1>
+                    <h1 className='font-bold text-white text-[24px] text-center'>Interesting Stories | Updates | Guides</h1>
                     <p className='text-[13px] text-gray-50 w-[50%] text-center'>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nisl diam, gravida ut eleifend ac, dictum scelerisque tortor. Phasellus congue ex eu felis hendrerit aliquet. Integer turpis augue,
                     </p>
@@ -20,7 +20,7 @@ const Footer = () => {
                         <FaTwitter />
                     </div>
                     <div className='border-neutral-500 border-2 w-full' />
-                    <div className='flex justify-between text-white w-full px-4 text-[14px] font-bold items-center'>
+                    <div className='flex justify-between text-white w-full px-4 md:text-[14px] text-[10px] font-bold  items-center'>
                         <p>&copy;2023 CodeBloug. All rights reserved.</p>
                         <p>Made with ♥ by Mustafa Abu Wardeh</p>
                     </div>
