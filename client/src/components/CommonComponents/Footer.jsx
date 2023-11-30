@@ -3,7 +3,7 @@ import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <div className='md:px-[80px] px-8'>
+        <div className=''>
             <div className='bg-neutral-700 w-full rounded-lg mt-12'>
                 <div className='flex flex-col items-center space-y-8 py-8'>
                     <h1 className='font-bold text-white text-[24px] text-center'>Interesting Stories | Updates | Guides</h1>

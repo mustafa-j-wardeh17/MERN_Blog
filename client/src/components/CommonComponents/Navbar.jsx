@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { IoIosMenu } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,12 +7,14 @@ import axios from 'axios';
 
 const Navbar = () => {
     const { isAuth } = useSelector(state => state.blog)
-    const navigate = useNavigate
+    const navigate = useNavigate()
     const [Menu, setMenu] = useState(false)
     const [searchIcon, setSearcgIcon] = useState(false)
     const [searchValue, setSearchValue] = useState('')
-    const handleMenu = () => {
-        setMenu(!Menu)
+    const handleMenu = (e) => {
+        e.stopPropagation();
+
+        setMenu(prev => !prev)
     }
     const handleShowSearchIcon = () => {
         setSearcgIcon(true)
@@ -31,6 +33,24 @@ const Navbar = () => {
         setSearchValue('')
     }
 
+
+    const menuRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                // Clicked outside the menu, close the menu
+                setMenu(false);
+            }
+        };
+
+        document.addEventListener('click', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, [menuRef]);
+
     const handleLogout = async () => {
         setMenu(false)
         try {
@@ -38,7 +58,7 @@ const Navbar = () => {
             if (response.data.Status === "Success") {
                 location.reload()
             }
-            else{
+            else {
                 alert("error")
             }
         }
@@ -48,7 +68,7 @@ const Navbar = () => {
 
     }
     return (
-        <div className='flex justify-between items-center mb-5 md:px-[80px] px-8'>
+        <div className='flex justify-between items-center mb-5 '>
             <Link to={'/'} className='flex items-center space-x-2 cursor-pointer'  >
                 <img src='/logo.svg' className='w-[30px] ' />
                 <h3>CodeBlog</h3>
@@ -76,14 +96,18 @@ const Navbar = () => {
                         </div>
                     )
                     : (
-                        <div className='text-[14px] flex space-x-1'>
-                            <Link to={'/login'}>Login</Link>
-                            <span>/</span>
-                            <Link to={'/register'}>Register</Link>
+                        <div className='text-[14px]  flex items-center space-x-1'>
+                            <Link to={'/login'}
+                                className=' px-3 py-1 rounded-md'
+
+                            >Login</Link>
+                            <Link to={'/register'}
+                                className='bg-blue-500 px-3 py-1 rounded-md text-white'
+                            >Register</Link>
                         </div>
                     )
             }
-            <div className={`${Menu ? 'flex' : 'hidden'} absolute bg-black  flex-col justify-center items-center w-[120px] px-2 py-3 space-y-2 sm:right-12 sm:top-12 right-2 top-14  rounded-md z-10`}>
+            <div ref={menuRef} className={`${Menu ? 'flex' : 'hidden'} absolute bg-black  flex-col justify-center items-center w-[120px] px-2 py-3 space-y-2  lg:right-36 md:right-20 sm:top-12 right-2 top-14  rounded-md z-10`}>
                 <Link to={'/'} onClick={() => setMenu(false)} className='text-gray-200 hover:text-white' >
                     Home
                 </Link>

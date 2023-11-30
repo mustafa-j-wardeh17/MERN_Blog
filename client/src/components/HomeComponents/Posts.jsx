@@ -1,27 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import PostCard from './PostCard'
 import axios from 'axios'
+import Loader from '../CommonComponents/Loader'
 
-const Posts = () => {
-
-    const [posts, setPosts] = useState([])
+const Posts = ({ posts }) => {
     const [postsSlice, setPostsSlice] = useState([])
     const [postsSliceIndex, setPostsSliceIndex] = useState(1)
-
     useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                const response = await axios.get('/post/posts');
-                const postsData = await response.data;
-                setPosts(postsData)
-
-                return postsData
-
-            } catch (error) {
-                console.error('Error fetching posts:', error.message);
-            }
-        };
-        fetchPosts()
         const newPostsSlice = []
         if (posts.length > 6) {
             for (let i = 0; i < Math.ceil(posts.length) / 6; i++) {
@@ -37,7 +22,8 @@ const Posts = () => {
     return (
         <div className='py-12'>
             <h1 className='md:text-[28px] text-[20px] text-neutral-700 font-bold mb-8'>Recent Posts</h1>
-            <div className='grid gap-8 lg:grid-cols-3  sm:grid-cols-2 grid-cols-1'>
+
+            <div className='flex flex-col space-y-10'>
                 {
 
                     postsSlice.length > 0
@@ -49,6 +35,9 @@ const Posts = () => {
                         ))
                 }
             </div>
+
+
+
             <div className='flex justify-end mt-2'>
                 {
                     posts.length > 6 ?

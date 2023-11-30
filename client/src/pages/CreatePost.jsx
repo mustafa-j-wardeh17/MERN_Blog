@@ -6,15 +6,18 @@ import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { SetCreateMode, SetIsAuth, SetLoggendId } from '../redux/blogSlice/blogSlice'
+import { IoMdAddCircle } from "react-icons/io";
+import Loader from '../components/CommonComponents/Loader'
 
 const CreatePost = () => {
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
   const { loggendId } = useSelector(state => state.blog)
   const [err, setErr] = useState('')
   const [post, setPost] = useState({
     title: '',
     desc: '',
-    image: '',
+    image: '/computer.jpg',
   })
   const username = 'mustafa abu wardeh'
   const categories = ['phone', 'technology']
@@ -63,6 +66,7 @@ const CreatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true)
       await axios.post(`/post/create/${userId}`, {
         title: post.title,
         desc: post.desc,
@@ -76,6 +80,7 @@ const CreatePost = () => {
         image: '',
       })
       setErr('')
+      setLoading(false)
     }
     catch (error) {
       if (error.response.status === 400 && error.response) {
@@ -91,11 +96,21 @@ const CreatePost = () => {
       else {
         console.log(error)
       }
+      setLoading(false)
+
     }
   }
 
   return (
-    <div className='w-full'>
+    <div className='relative w-full flex flex-col justify-center'>
+      {
+        loading &&
+        (
+          <div className='absolute transform  translate-y-[50%]   w-full h-full justify-center items-center'>
+            <Loader />
+          </div>
+        )
+      }
       <div className='flex relative w-full h-[470px] justify-center items-center rounded-md shadow-md '>
         {
           post.image !== '' ? (
@@ -108,24 +123,30 @@ const CreatePost = () => {
           )
             : ''
         }
-        <label className='text-white bg-black/70 px-5 py-2 font-bold'>
-          <input type='file' className='hidden' onChange={handleImageChange} />
-          <p>upload image</p>
-        </label>
+
       </div>
-      <form onSubmit={handleSubmit} className="flex flex-col mb-5 md:px-[80px] px-8 mt-20">
-        <div>
-          <p >
-            Title
-          </p>
-          <input type='text' value={post.title} onChange={(e) => setPost({ ...post, title: e.target.value })} className=' rounded-md border' />
+      <form onSubmit={handleSubmit} className="flex flex-col mt-3 space-y-6 ">
+        <div className='flex space-x-2'>
+          <label className=' font-bold flex items-center' >
+            <input type='file' className='hidden' onChange={handleImageChange} />
+            <IoMdAddCircle size={26} className='cursor-pointer' />
+          </label>
+          <input type='text'
+            placeholder='Title'
+            value={post.title}
+            onChange={(e) => setPost({ ...post, title: e.target.value })}
+            className=' rounded-md  px-1 py-1 w-full focus:outline-none'
+          />
+          <button type='submit' className='px-2 text-[14px] ml-10 bg-blue-500 min-w-[80px] rounded-md shadow-md text-white'>Add post</button>
+
         </div>
         <div>
-          <p >
-            Description
-          </p>
-          <input type='text' value={post.desc} onChange={(e) => setPost({ ...post, desc: e.target.value })} className=' rounded-md border' />
-          <button type='submit' className='px-4 py-2 ml-10 bg-green-500 text-white'>Add post</button>
+
+          <textarea
+            value={post.desc}
+            placeholder='Tell Your Story ...'
+            onChange={(e) => setPost({ ...post, desc: e.target.value })}
+            className=' rounded-md resize-y min-h-[130px] w-full focus:outline-none' />
           {
             err !== '' && (
               <p>{err}</p>
