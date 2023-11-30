@@ -15,7 +15,7 @@ const RecentPosts = ({ posts }) => {
             <div className=' flex flex-col space-y-4 mt-3'>
                 {
                     recentPosts.map((post) => (
-                        <div onClick={()=>navigate(`/${post._id}`)} className='flex cursor-pointer space-x-4 items-center'>
+                        <div key={post._id} onClick={() => navigate(`/${post._id}`)} className='flex cursor-pointer space-x-4 items-center'>
                             <img src='/herocard1.jpg' className='h-[50px] w-[50px] rounded-full' />
                             <div className='flex flex-col justify-between text-[14px] text-neutral-600 '>
                                 <p>{post.createdAt.slice(0, 10)}</p>

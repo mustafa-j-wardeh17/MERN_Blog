@@ -7,9 +7,8 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { SetIsAuth, SetLoggendId } from '../redux/blogSlice/blogSlice'
 import Loader from '../components/CommonComponents/Loader'
-import CommentForm from '../components/PostComponents/CommentsComp'
+import CommentForm from '../components/PostComponents/CommentForm'
 import CommentsComp from '../components/PostComponents/CommentsComp'
-import CommpentForm from '../components/PostComponents/CommentForm'
 
 const Post = () => {
   const [loader, setLoader] = useState(true)
@@ -64,7 +63,7 @@ const Post = () => {
                 <PostDetails data={post} />
               </div>
               <div className='shadow p-4 rounded-lg'>
-                <CommpentForm data={post} />
+                <CommentForm data={post} />
               </div>
               <div className='shadow p-4 rounded-lg'>
                 <CommentsComp data={post} />

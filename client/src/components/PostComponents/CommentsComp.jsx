@@ -64,9 +64,9 @@ const CommentsComp = ({ data }) => {
                 <div className='border' />
             </div>
             {
-                comments.map((comment, index) => (
-                    <div className='flex flex-col w-full space-y-2 '>
-                        <div key={index} className='flex justify-between w-full space-x-4'>
+                comments.map((comment) => (
+                    <div key={comment._id} className='flex flex-col w-full space-y-2 '>
+                        <div  className='flex justify-between w-full space-x-4'>
                             <div className='flex text-[14px] w-full flex-col space-y-2'>
                                 <div className='flex space-x-2 items-center' >
                                     <p className='font-bold text-black'>{'text'} </p>
