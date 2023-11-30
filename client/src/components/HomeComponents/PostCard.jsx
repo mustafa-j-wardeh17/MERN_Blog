@@ -13,7 +13,7 @@ const PostCard = ({ data }) => {
     return (
         <div className='w-full p-8 shadow-lg rounded-md'>
             <div onClick={() => handlePostPage(data._id)} className='w-full shadow-sm cursor-pointer rounded-md overflow-hidden'>
-                <img src={data.image} className=' w-full aspect-video' />
+                <img src={data.image} className=' w-full aspect-[16/6]' />
             </div>
             <div className='flex flex-col items-center justify-center  mt-3 space-y-4'>
                 <h1 onClick={() => handlePostPage(data._id)} className='cursor-pointer text-[24px] text-neutral-700 font-bold  '>

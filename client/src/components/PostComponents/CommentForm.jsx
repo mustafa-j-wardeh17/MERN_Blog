@@ -43,54 +43,49 @@ const CommentForm = ({ data }) => {
 
     }
     return (
-        <>
-            {
-                loggendId !== '' &&
-                (
-                    <div className='p-6 flex flex-col w-full space-y-6'>
-                        <div className='flex flex-col space-y-4'>
-                            <h1 className='font-bold text-[18px]'>Leave a Reply</h1>
-                            <div className='border' />
-                        </div>
-                        <form
-                            onSubmit={(e) => handlePost(e)}
-                            className='flex w-full flex-col space-y-4 ' >
-                            <textarea
-                                value={commentData.comment}
-                                placeholder='Comment'
-                                onChange={(e) => setCommentData({ ...commentData, comment: e.target.value })}
-                                className='w-full text-[13px] resize-y p-3 min-h-[160px] bg-[#efbed8]/10 rounded-md  focus:outline-none' />
-                            <div className='flex md:flex-row text-neutral-600 flex-col gap-4'>
-                                <input
-                                    value={commentData.name}
-                                    type='text'
-                                    placeholder='Name'
-                                    onChange={(e) => setCommentData({ ...commentData, name: e.target.value })}
-                                    className='md:w-[50%] w-full px-3 bg-[#efbed8]/10 py-1 rounded-md   focus:outline-none' />
-                                <input
-                                    value={commentData.email}
-                                    type='email'
-                                    placeholder='Email'
-                                    onChange={(e) => setCommentData({ ...commentData, email: e.target.value })}
-                                    className='md:w-[50%] w-full px-3 bg-[#efbed8]/10 py-1 rounded-md   focus:outline-none' />
-                            </div>
-                            <br />
-                            <div className='flex flex-col space-y-1'>
-                                <button
-                                    type='submit'
-                                    className='text-white text-center py-2 px-3 rounded-full w-[160px]  bg-[#f00582] shadow-md' >
-                                    Post Comment
-                                </button>
-                                <p className='text-[12px] ml-2 text-red-600'>
-                                    {err}
-                                </p>
-                            </div>
 
-                        </form>
-                    </div>
-                )
-            }
-        </>
+        <div className='p-6 flex flex-col w-full space-y-6'>
+            <div className='flex flex-col space-y-4'>
+                <h1 className='font-bold text-[18px]'>Leave a Reply</h1>
+                <div className='border' />
+            </div>
+            <form
+                onSubmit={(e) => handlePost(e)}
+                className='flex w-full flex-col space-y-4 ' >
+                <textarea
+                    value={commentData.comment}
+                    placeholder='Comment'
+                    onChange={(e) => setCommentData({ ...commentData, comment: e.target.value })}
+                    className='w-full text-[13px] resize-y p-3 min-h-[160px] bg-[#efbed8]/10 rounded-md  focus:outline-none' />
+                <div className='flex md:flex-row text-neutral-600 flex-col gap-4'>
+                    <input
+                        value={commentData.name}
+                        type='text'
+                        placeholder='Name'
+                        onChange={(e) => setCommentData({ ...commentData, name: e.target.value })}
+                        className='md:w-[50%] w-full px-3 bg-[#efbed8]/10 py-1 rounded-md   focus:outline-none' />
+                    <input
+                        value={commentData.email}
+                        type='email'
+                        placeholder='Email'
+                        onChange={(e) => setCommentData({ ...commentData, email: e.target.value })}
+                        className='md:w-[50%] w-full px-3 bg-[#efbed8]/10 py-1 rounded-md   focus:outline-none' />
+                </div>
+                <br />
+                <div className='flex flex-col space-y-1'>
+                    <button
+                        type='submit'
+                        className='text-white text-center py-2 px-3 rounded-full w-[160px]  bg-[#f00582] shadow-md' >
+                        Post Comment
+                    </button>
+                    <p className='text-[12px] ml-2 text-red-600'>
+                        {err}
+                    </p>
+                </div>
+
+            </form>
+        </div>
+
     )
 }
 

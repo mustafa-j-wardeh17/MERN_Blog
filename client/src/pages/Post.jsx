@@ -62,9 +62,12 @@ const Post = () => {
                 <PostHero data={post} />
                 <PostDetails data={post} />
               </div>
-              <div className='shadow p-4 rounded-lg'>
-                <CommentForm data={post} />
-              </div>
+              {loggendId !== '' && (
+                <div className='shadow p-4 rounded-lg'>
+                  <CommentForm data={post} />
+                </div>
+              )}
+
               <div className='shadow p-4 rounded-lg'>
                 <CommentsComp data={post} />
               </div>

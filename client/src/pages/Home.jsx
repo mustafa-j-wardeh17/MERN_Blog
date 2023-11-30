@@ -59,12 +59,15 @@ const Home = () => {
                             <div className='md:w-[65%] w-full'>
                                 <Posts posts={posts} loader={loader} />
                             </div>
-                            <div className='lg:w-[30%] md:w-[35%] w-full h-full md:relative'>
-                                <div className=' flex flex-col space-y-6'>
-                                    <RecentPosts posts={posts} />
-                                    <CategoriesCard />
+                            <div className='lg:w-[30%] md:w-[35%] w-full h-full relative'>
+                                <div className='sticky top-0 h-full'>
+                                    <div className='h-full flex flex-col space-y-6'>
+                                        <RecentPosts posts={posts} />
+                                        <CategoriesCard />
+                                    </div>
                                 </div>
                             </div>
+
 
                         </div>
                     )

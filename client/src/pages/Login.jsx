@@ -65,8 +65,8 @@ const Login = () => {
           </div>
         </div>
         <form onSubmit={handleLogin} className='flex flex-col items-center space-y-[6px] '>
-          <input value={data.email} onChange={(e) => { setData({ ...data, email: e.target.value }) }} type="email" placeholder="Email" className='w-full text-[14px] py-3 px-[15px] text-neutral-600 border rounded-md  ' />
-          <input value={data.password} onChange={(e) => { setData({ ...data, password: e.target.value }) }} type="password" placeholder="password" className='w-full text-[14px] py-3 px-[15px] text-neutral-600 border rounded-md ' />
+          <input required value={data.email} onChange={(e) => { setData({ ...data, email: e.target.value }) }} type="email" placeholder="Email" className='w-full text-[14px] py-3 px-[15px] text-neutral-600 border rounded-md  ' />
+          <input required value={data.password} onChange={(e) => { setData({ ...data, password: e.target.value }) }} type="password" placeholder="password" className='w-full text-[14px] py-3 px-[15px] text-neutral-600 border rounded-md ' />
           <button type="submit" className='flex items-center justify-center text-center text-neutral-100 font-bold bg-purple-600 p-2 w-full rounded-md shadow-md'>Login</button>
           {
             err !== null ?

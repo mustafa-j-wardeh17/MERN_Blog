@@ -7,12 +7,12 @@ const PostHero = ({ data }) => {
     const { createMode } = useSelector(state => state.blog)
     return (
         <div>
-            <div className='w-full relative h-[470px] rounded-md overflow-hidden'>
-                <img src={data.image} className='absolute w-full h-full   ' />
+            <div className='w-full relative  rounded-md overflow-hidden'>
+                <img src={data.image} className=' w-full aspect-[16/9]  ' />
             </div>
             <div className='flex space-x-4 text-[14px] tracking-wider mt-6 items-center text-neutral-400 '>
                 <div className=' flex space-x-1 items-center '>
-                    <FaRegUserCircle  className='text-blue-700'/>
+                    <FaRegUserCircle className='text-blue-700' />
                     <p>{data.username}</p>
                 </div>
                 <div className=' flex space-x-1 items-center '>

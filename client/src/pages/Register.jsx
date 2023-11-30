@@ -83,12 +83,12 @@ const Register = () => {
         </div>
         <form onSubmit={handleRegister} className='flex flex-col items-center  space-y-[6px] '>
           <div className='flex space-x-2 justify-between'>
-            <input value={data.firstname} onChange={(e) => setData({ ...data, firstname: e.target.value })} type="text" placeholder="firstname" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
-            <input value={data.lastname} onChange={(e) => setData({ ...data, lastname: e.target.value })} type="text" placeholder="lastname" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
+            <input required value={data.firstname} onChange={(e) => setData({ ...data, firstname: e.target.value })} type="text" placeholder="firstname" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
+            <input required value={data.lastname} onChange={(e) => setData({ ...data, lastname: e.target.value })} type="text" placeholder="lastname" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
           </div>
-          <input value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} type="email" placeholder="email" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
-          <input value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} type="password" placeholder="password" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
-          <input value={data.confirmPassword} onChange={(e) => setData({ ...data, confirmPassword: e.target.value })} type="password" placeholder="confirm password" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
+          <input required value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} type="email" placeholder="email" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
+          <input required value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} type="password" placeholder="password" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
+          <input required value={data.confirmPassword} onChange={(e) => setData({ ...data, confirmPassword: e.target.value })} type="password" placeholder="confirm password" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
           <button type="submit" className='flex items-center justify-center text-center text-neutral-100 font-bold bg-purple-600 p-2 w-full rounded-md shadow-md'>Register</button>
           {
             err !== null ?

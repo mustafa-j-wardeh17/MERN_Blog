@@ -69,7 +69,7 @@ const CommentsComp = ({ data }) => {
                         <div  className='flex justify-between w-full space-x-4'>
                             <div className='flex text-[14px] w-full flex-col space-y-2'>
                                 <div className='flex space-x-2 items-center' >
-                                    <p className='font-bold text-black'>{'text'} </p>
+                                    <p className='font-bold text-black'>{comment.author} </p>
                                     <p className='text-[12px] text-neutral-600'>on {'Oct 08,2021'}</p>
                                 </div>
                                 {
