@@ -4,7 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { SetIsAuth, SetLoggendId } from '../redux/blogSlice/blogSlice';
+import { SetIsAuth, SetLoggedUser, SetLoggendId } from '../redux/blogSlice/blogSlice';
 
 const Login = () => {
   const dispatch = useDispatch()

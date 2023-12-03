@@ -114,6 +114,9 @@ const Navbar = () => {
                 <Link to={'/'} onClick={() => setMenu(false)} className='text-gray-200 hover:text-white' >
                     Home
                 </Link>
+                <Link to={'/profile'} onClick={() => setMenu(false)} className='text-gray-200 hover:text-white' >
+                    Profile
+                </Link>
                 <Link to={'/myposts'} onClick={() => setMenu(false)} className='text-gray-200 hover:text-white' >
                     My Posts
                 </Link>

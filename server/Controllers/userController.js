@@ -75,8 +75,9 @@ export const deleteUser = async (req, res) => {
         await Post.deleteMany({ userId: userId })
         await Comment.deleteMany({ userId: userId })
         res.status(200).json('User deleted successfully')
+        res.redirect('/login');
     }
     catch (err) {
-        return res.status(500).json("Something went wrong")
+        return res.status(500).json({err:"Something went wrong"})
     }
 } 

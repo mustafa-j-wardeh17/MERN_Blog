@@ -43,11 +43,12 @@ const CommentsComp = ({ data }) => {
 
     }
 
-    const handlePublish = async (data) => {
+    const handlePublish = async (commentId) => {
         try {
-            await axios.patch(`/comment/update/${data._id}`, {
+            await axios.patch(`/comment/update/${commentId}`, {
                 comment: addComment,
                 username: loggedUser,
+                userId: loggendId,
                 postId: data.postId
             })
             setAddComment('')
@@ -91,7 +92,7 @@ const CommentsComp = ({ data }) => {
                                     <div className='flex items-end space-x-3'>
                                         {
                                             editMode && currentComment === comment._id ? (
-                                                <button onClick={() => handlePublish(comment)} className='flex items-center space-x-1 bg-blue-500 text-white py-[2px] px-[4px] text-[12px] rounded-md shadow-md'>
+                                                <button onClick={() => handlePublish(comment._id)} className='flex items-center space-x-1 bg-blue-500 text-white py-[2px] px-[4px] text-[12px] rounded-md shadow-md'>
                                                     <MdPublish />
                                                     <p>Publish</p>
                                                 </button>

@@ -78,10 +78,10 @@ export const getComment = async (req, res) => {
 //-------------Update Comment ----------------
 //--------------------------------------------
 export const updateComment = async (req, res) => {
-    const { comment, username, postId } = req.body
+    const { comment, username, postId, userId } = req.body
     const { commentId } = req.params
 
-    if (!comment && !username && !postId) {
+    if (!comment && !username && !postId && !userId) {
         return res.status(401).json({ err: "Please fill all fields" })
     }
 
@@ -93,9 +93,12 @@ export const updateComment = async (req, res) => {
 
         const updatedComment = await Comment.findByIdAndUpdate(commentId, {
             comment,
+            username,
+            userId,
+            postId
         })
 
-        res.status(200).json(`${author} updated comment successfully`)
+        res.status(200).json(`${username} updated comment successfully`)
     }
     catch (err) {
         return res.status(500).json({ err: "Something went wrong" })

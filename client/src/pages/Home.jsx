@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate('/login')
+    const navigate = useNavigate()
     const { loggendId } = useSelector(state => state.blog)
     const checkAuthentication = async () => {
         try {

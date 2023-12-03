@@ -57,7 +57,7 @@ export const loginController = async (req, res) => {
         if (!isMatch) {
             return res.status(401).json({ err: 'Password doesn not match' })
         }
-        const token = jwt.sign({ id: user._id, email: user.email, username: user.username, image: user.image }, process.env.SECRET_KEY, { expiresIn: '3d' })
+        const token = jwt.sign({ id: user._id, username: user.username }, process.env.SECRET_KEY, { expiresIn: '3d' })
 
         res.cookie("token", token).status(200)
         res.status(200).json(user._id)
