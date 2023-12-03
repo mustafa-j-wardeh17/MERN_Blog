@@ -8,8 +8,8 @@ import User from '../Models/usersModel.js'
 //-------------Register User -----------------
 //--------------------------------------------
 export const registerController = async (req, res) => {
-    const { firstname, lastname, email, password, confirmPassword } = req.body
-    if (!firstname && !lastname && !email && !password && !confirmPassword) {
+    const { username, image, email, password, confirmPassword } = req.body
+    if (!username && !image && !email && !password && !confirmPassword) {
         return res.status(401).json({ err: "Please fill all fields" })
     }
     try {
@@ -25,8 +25,8 @@ export const registerController = async (req, res) => {
         const salt = await bcrypt.genSalt(10)
         const hashPassword = await bcrypt.hash(password, salt)
         const newUser = new User({
-            firstname,
-            lastname,
+            username,
+            image,
             email,
             password: hashPassword,
         })
@@ -57,7 +57,7 @@ export const loginController = async (req, res) => {
         if (!isMatch) {
             return res.status(401).json({ err: 'Password doesn not match' })
         }
-        const token = jwt.sign({ id: user._id, email: user.email, firstname: user.firstname, lastname: user.lastname }, process.env.SECRET_KEY, { expiresIn: '3d' })
+        const token = jwt.sign({ id: user._id, email: user.email, username: user.username, image: user.image }, process.env.SECRET_KEY, { expiresIn: '3d' })
 
         res.cookie("token", token).status(200)
         res.status(200).json(user._id)
@@ -83,5 +83,8 @@ export const logoutController = (req, res) => {
 //--------------------------------------------
 
 export const verifyUser = (req, res) => {
-    res.json(req.userId)
+    res.json({
+        id: req.id,
+        username: req.username,
+    })
 }

@@ -2,7 +2,7 @@ import React from 'react'
 
 const HeroCard = ({ src }) => {
     return (
-        <div className=' flex space-x-4 w-full h-[48%] overflow-auto'>
+        <div className=' flex space-x-4 w-full bg-white/95 rounded-md p-2 overflow-hidden h-[48%] '>
             <div className=' h-full w-[220px] rounded-md overflow-hidden'>
                 <img src={src} className=' object-fill w-full h-full aspect-square' />
             </div>

@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     isAuth: false,
     loggendId: '',
+    loggedUser: '',
     createMode: false,
     categories: ['computer', 'programming', 'gaming', 'artificial intelligence']
 }
@@ -17,6 +18,9 @@ export const blogSlice = createSlice({
         SetLoggendId: (state, action) => {
             state.loggendId = action.payload
         },
+        SetLoggedUser: (state, action) => {
+            state.loggedUser = action.payload
+        },
         SetCreateMode: (state, action) => {
             state.isAuth = action.payload
         },
@@ -29,6 +33,6 @@ export const blogSlice = createSlice({
     }
 });
 
-export const { SetIsAuth, SetLoggendId, SetCreateMode, setCategories } = blogSlice.actions;
+export const { SetIsAuth, SetLoggendId, SetLoggedUser, SetCreateMode, setCategories } = blogSlice.actions;
 
 export default blogSlice.reducer;

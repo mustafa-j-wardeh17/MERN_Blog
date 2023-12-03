@@ -9,7 +9,7 @@ import Comment from '../Models/commentsModel.js'
 //--------------------------------------------
 
 export const createComment = async (req, res) => {
-    const { comment, author, userId } = req.body
+    const { comment, username, userId } = req.body
     const { postId } = req.params
 
     if (!comment && !author) {
@@ -24,13 +24,13 @@ export const createComment = async (req, res) => {
         }
         const newComment = new Comment({
             comment,
-            author,
+            username,
             userId,
             postId,
         })
 
         await newComment.save()
-        res.status(200).json(`${user.firstname} added comment successfully`)
+        res.status(200).json(`${user.username} added comment successfully`)
     }
     catch (err) {
         return res.status(500).json({ err: "Something went wrong" })
@@ -78,10 +78,10 @@ export const getComment = async (req, res) => {
 //-------------Update Comment ----------------
 //--------------------------------------------
 export const updateComment = async (req, res) => {
-    const { comment, author, postId } = req.body
+    const { comment, username, postId } = req.body
     const { commentId } = req.params
 
-    if (!comment && !author && !postId) {
+    if (!comment && !username && !postId) {
         return res.status(401).json({ err: "Please fill all fields" })
     }
 

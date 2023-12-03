@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import { CiTimer } from "react-icons/ci";
 import { FaRegUserCircle } from "react-icons/fa";
+import parse from 'html-react-parser';
 
 const PostCard = ({ data }) => {
     const navigate = useNavigate()
@@ -11,15 +12,15 @@ const PostCard = ({ data }) => {
         navigate(`/${id}`)
     }
     return (
-        <div className='w-full p-8 shadow-lg rounded-md'>
+        <div className='w-full bg-white p-4 shadow-lg rounded-md'>
             <div onClick={() => handlePostPage(data._id)} className='w-full shadow-sm cursor-pointer rounded-md overflow-hidden'>
-                <img src={data.image} className=' w-full aspect-[16/6]' />
+                <img src={data.image} className=' w-full aspect-[16/9] md:aspect-video lg:aspect-[16/7]' />
             </div>
             <div className='flex flex-col items-center justify-center  mt-3 space-y-4'>
-                <h1 onClick={() => handlePostPage(data._id)} className='cursor-pointer text-[24px] text-neutral-700 font-bold  '>
+                <h1 onClick={() => handlePostPage(data._id)} className='cursor-pointer capitalize text-[24px] text-neutral-700 font-bold  '>
                     {data.title}
                 </h1>
-                <div className='flex space-x-4 text-[14px] tracking-wider items-center text-neutral-400 '>
+                <div className='flex md:flex-row flex-col md:space-x-4 text-[14px] tracking-wider items-center text-neutral-400 '>
                     <div className=' flex space-x-1 items-center '>
                         <FaRegUserCircle />
                         <p>{data.username}</p>
@@ -39,7 +40,7 @@ const PostCard = ({ data }) => {
                         }
                     </div>
                 </div>
-                <p>{data.desc.length > 20 ? data.desc.slice(0.20) + '...' : data.desc + ' ...'}</p>
+                <div className='text-center'>{data.desc.length > 20 ? parse((data.desc.slice(0, 150) + '...')) : parse(data.desc)}</div>
                 <button onClick={() => handlePostPage(data._id)} className='text-center px-6 py-2 bg-[#e70d8d] rounded-full text-neutral-100'>Continue Reading</button>
             </div>
         </div>

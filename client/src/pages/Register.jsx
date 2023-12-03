@@ -1,18 +1,67 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaApple } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { SetIsAuth, SetLoggendId } from '../redux/blogSlice/blogSlice'
+import { FaPlus } from "react-icons/fa";
+import { FaUserAlt } from "react-icons/fa";
 
 const Register = () => {
+
+  const dispatch = useDispatch()
+  const { loggendId } = useSelector(state => state.blog)
   const [data, setData] = useState({
-    firstname: '',
-    lastname: '',
+    username: '',
     email: '',
+    image: '/user.webp',
     password: '',
     confirmPassword: ''
   })
+  const checkAuthentication = async () => {
+    try {
+      const response = await axios.get('/auth/verify');
+      dispatch(SetLoggendId(response.data.id));
+      dispatch(SetLoggedUser(response.data.username));
+      dispatch(SetIsAuth(true));
+      navigate('/')
+    } catch (error) {
+      console.log('Error', error.response.data.err);
+      dispatch(SetIsAuth(false));
+      dispatch(SetLoggendId(''));
+      dispatch(SetLoggedUser(''));
+
+    }
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setData({ ...data, image: reader.result });
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+
+  useEffect(() => {
+    checkAuthentication();
+    console.log('userId' + loggendId)
+    if (loggendId !== '') {
+      const isLoginPage = window.location.pathname === '/register';
+      if (isLoginPage) {
+        navigate('/');
+      }
+    }
+
+  }, [loggendId])
+
+
 
   const navigate = useNavigate()
   const [err, setErr] = useState('')
@@ -23,16 +72,15 @@ const Register = () => {
     try {
       setErr(false);
       await axios.post('/auth/register', {
-        firstname: data.firstname,
-        lastname: data.lastname,
+        image: data.image,
+        username: data.username,
         email: data.email,
         password: data.password,
         confirmPassword: data.confirmPassword
       })
 
       setData({
-        firstname: '',
-        lastname: '',
+        username: '',
         email: '',
         password: '',
         confirmPassword: ''
@@ -65,27 +113,40 @@ const Register = () => {
           <h1 className='font-bold tracking-wider text-center text-[26px]'>Register</h1>
           <p className='text-neutral-600 mt-2 mb-4 text-[13px]'>Remember everything important.</p>
         </div>
-        <div className='cursor-pointer flex flex-col space-y-2 justify-center'>
-          <div onClick={handleGoogleRegister} className='flex justify-center items-center p-2 border px-4 rounded-md transition-all hover:bg-gray-100'>
+        <div className=' flex flex-col space-y-2 justify-center'>
+          {/* <div onClick={handleGoogleRegister} className='flex justify-center items-center p-2 border px-4 rounded-md transition-all hover:bg-gray-100'>
             <FcGoogle />
             <p className='text-neutral-600 text-[14px] ml-2 tracking-wider'>Continue With Google</p>
           </div>
           <div onClick={handleAppleRegister} className='cursor-pointer  flex justify-center items-center p-2 border px-4 rounded-md transition-all hover:bg-gray-100'>
             <FaApple />
             <p className='text-neutral-600 text-[14px] ml-2 tracking-wider'>Continue With Apple</p>
-          </div>
-          <div className='flex flex-row text-neutral-300 items-center'>
-            <div className='h-[1px] w-[50%] bg-neutral-300' />
-            <p className='mx-2'>or</p>
-            <div className='h-[1px] w-[50%] bg-neutral-300' />
+          </div> */}
+
+
+          <div className='flex flex-row text-neutral-300 space-x-2 justify-center my-8 items-center'>
+            <div className='h-[1px] w-[33%] bg-neutral-300' />
+
+            <div className='h-[70px] w-[70px] rounded-full bg-neutral-200 relative flex justify-center items-center overflow-hidden '>
+              <img src={data.image} className=' h-full w-full object-cover absolute z-[10]' />
+              <label className=' font-bold flex justify-center items-center' >
+                <input
+                  accept="image/*"
+                  type='file'
+                  className='hidden'
+                  onChange={handleImageChange} />
+                <FaPlus size={16} className='cursor-pointer text-neutral-700 flex justify-center items-center text-[14px] absolute z-[111]' />
+              </label>
+
+            </div>
+            <div className='h-[1px] w-[33%] bg-neutral-300' />
 
           </div>
+
+
         </div>
         <form onSubmit={handleRegister} className='flex flex-col items-center  space-y-[6px] '>
-          <div className='flex space-x-2 justify-between'>
-            <input required value={data.firstname} onChange={(e) => setData({ ...data, firstname: e.target.value })} type="text" placeholder="firstname" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
-            <input required value={data.lastname} onChange={(e) => setData({ ...data, lastname: e.target.value })} type="text" placeholder="lastname" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
-          </div>
+          <input required value={data.username} onChange={(e) => setData({ ...data, username: e.target.value })} type="text" placeholder="username" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
           <input required value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} type="email" placeholder="email" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
           <input required value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} type="password" placeholder="password" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
           <input required value={data.confirmPassword} onChange={(e) => setData({ ...data, confirmPassword: e.target.value })} type="password" placeholder="confirm password" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />

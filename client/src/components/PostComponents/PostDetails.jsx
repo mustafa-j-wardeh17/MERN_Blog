@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
+import parse from 'html-react-parser';
 
 const PostDetails = ({ data }) => {
     const { isAuth, loggendId } = useSelector(state => state.blog)
@@ -11,9 +12,9 @@ const PostDetails = ({ data }) => {
             <h1 className='text-[22px] capitalize font-bold text-neutral-800'>
                 {data.title}
             </h1>
-            <p className='text-[14px] text-neutral-700'>
-                {data.desc}
-            </p>
+            <div className='text-[14px] text-neutral-700'>
+                {parse(data.desc)}
+            </div>
             <div className='flex space-x-3 items-center'>
                 <p className='font-bold text-neutral-700'>Categories</p>
                 <div className='flex space-x-2' >

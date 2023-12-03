@@ -9,8 +9,8 @@ const CategoriesCard = ({ }) => {
         setCurrentCategories(categories)
     }, [categories])
     return (
-        <div className=' flex flex-col w-full mt-32 p-6 rounded-md shadow-md'>
-            <h1 className='font-bold'>Recent Posts</h1>
+        <div className=' flex flex-col bg-white/95 w-full mt-32 p-6 rounded-md shadow-md'>
+            <h1 className='font-bold'>Category</h1>
             <div className='border my-3' />
             <div className='flex flex-col text-[14px] text-neutral-500 space-y-4 mt-4'>
                 {

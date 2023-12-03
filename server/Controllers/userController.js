@@ -15,8 +15,8 @@ export const PreviewUser = async (req, res) => {
             return res.status(400).json({ err: "No user found" })
         }
         res.status(200).json({
-            firstname: user.firstname,
-            lastname: user.lastname,
+            username: user.username,
+            image: user.image,
             email: user.email
         })
     }
@@ -31,9 +31,9 @@ export const PreviewUser = async (req, res) => {
 //-------------- Update User -----------------
 //--------------------------------------------
 export const updateUser = async (req, res) => {
-    const { firstname, lastname, email, password, confirmPassword } = req.body
+    const { username, image, email, password, confirmPassword } = req.body
     const userId = req.params.id
-    if (!firstname && !lastname && !email && !password && !confirmPassword) {
+    if (!username && !image && !email && !password && !confirmPassword) {
         return res.status(401).json({ err: "Please fill all fields" })
     }
     try {
@@ -45,9 +45,8 @@ export const updateUser = async (req, res) => {
         const hashPassword = await bcrypt.hash(password, salt)
         const updatedUser = await User.findByIdAndUpdate(userId,
             {
-
-                firstname: firstname,
-                lastname: lastname,
+                username:username,
+                image:image,
                 email: email,
                 password: hashPassword
 
@@ -55,8 +54,8 @@ export const updateUser = async (req, res) => {
             { new: true }
         )
         res.status(200).json({
-            firstname: updatedUser.firstname,
-            lastname: updatedUser.lastname,
+            username: updatedUser.username,
+            image: updatedUser.image,
             email: updatedUser.email
         })
     }

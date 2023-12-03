@@ -8,7 +8,7 @@ import { MdPublish } from "react-icons/md";
 import { SetIsAuth, SetLoggendId } from '../../redux/blogSlice/blogSlice';
 
 const CommentsComp = ({ data }) => {
-    const { loggendId } = useSelector(state => state.blog)
+    const { loggendId, loggedUser } = useSelector(state => state.blog)
     const [comments, setComments] = useState([])
     const [editMode, setEditMode] = useState(false)
     const [addComment, setAddComment] = useState('')
@@ -47,7 +47,7 @@ const CommentsComp = ({ data }) => {
         try {
             await axios.patch(`/comment/update/${data._id}`, {
                 comment: addComment,
-                author: data.author,
+                username: loggedUser,
                 postId: data.postId
             })
             setAddComment('')
@@ -66,10 +66,10 @@ const CommentsComp = ({ data }) => {
             {
                 comments.map((comment) => (
                     <div key={comment._id} className='flex flex-col w-full space-y-2 '>
-                        <div  className='flex justify-between w-full space-x-4'>
+                        <div className='flex justify-between w-full space-x-4'>
                             <div className='flex text-[14px] w-full flex-col space-y-2'>
                                 <div className='flex space-x-2 items-center' >
-                                    <p className='font-bold text-black'>{comment.author} </p>
+                                    <p className='font-bold text-black'>{comment.username} </p>
                                     <p className='text-[12px] text-neutral-600'>on {'Oct 08,2021'}</p>
                                 </div>
                                 {

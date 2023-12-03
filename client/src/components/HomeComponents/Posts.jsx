@@ -21,7 +21,7 @@ const Posts = ({ posts }) => {
     }, [posts])
     return (
         <div className='py-12'>
-            <h1 className='md:text-[28px] text-[20px] text-neutral-700 font-bold mb-8'>Recent Posts</h1>
+            <h1 className='md:text-[28px] text-[20px] text-white font-bold mb-8'>Recent Posts</h1>
 
             <div className='flex flex-col space-y-10'>
                 {
@@ -30,7 +30,7 @@ const Posts = ({ posts }) => {
                         ? postsSlice[postsSliceIndex - 1].map((data) => (
                             <PostCard key={data._id} data={data} />
                         ))
-                        : posts.map((data) => (
+                        : posts?.map((data) => (
                             <PostCard key={data._id} data={data} />
                         ))
                 }

@@ -5,7 +5,7 @@ import PostDetails from '../components/PostComponents/PostDetails'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { SetIsAuth, SetLoggendId } from '../redux/blogSlice/blogSlice'
+import { SetIsAuth, SetLoggedUser, SetLoggendId } from '../redux/blogSlice/blogSlice'
 import Loader from '../components/CommonComponents/Loader'
 import CommentForm from '../components/PostComponents/CommentForm'
 import CommentsComp from '../components/PostComponents/CommentsComp'
@@ -16,16 +16,18 @@ const Post = () => {
   const [post, SetPost] = useState({})
   const dispatch = useDispatch()
   const { loggendId } = useSelector(state => state.blog)
-
+  const navigate = useNavigate()
   const checkAuthentication = async () => {
     try {
       const response = await axios.get('/auth/verify');
-      dispatch(SetLoggendId(response.data));
+      dispatch(SetLoggendId(response.data.id));
+      dispatch(SetLoggedUser(response.data.username));
       dispatch(SetIsAuth(true));
     } catch (error) {
       console.log('Error', error);
       dispatch(SetIsAuth(false));
       dispatch(SetLoggendId(''));
+      navigate('/')
     }
   };
 
@@ -58,17 +60,17 @@ const Post = () => {
           )
           : (
             <div className='flex flex-col space-y-10'>
-              <div className='shadow p-6 rounded-lg'>
+              <div className='shadow bg-white p-6 rounded-lg'>
                 <PostHero data={post} />
                 <PostDetails data={post} />
               </div>
               {loggendId !== '' && (
-                <div className='shadow p-4 rounded-lg'>
+                <div className='shadow p-4 bg-white rounded-lg'>
                   <CommentForm data={post} />
                 </div>
               )}
 
-              <div className='shadow p-4 rounded-lg'>
+              <div className='shadow p-4 bg-white rounded-lg'>
                 <CommentsComp data={post} />
               </div>
             </div>

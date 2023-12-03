@@ -2,25 +2,30 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../components/CommonComponents/Navbar'
 import Hero from '../components/HomeComponents/Hero'
 import Posts from '../components/HomeComponents/Posts'
-import { useDispatch } from 'react-redux'
-import { SetIsAuth, SetLoggendId } from '../redux/blogSlice/blogSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { SetIsAuth, SetLoggedUser, SetLoggendId } from '../redux/blogSlice/blogSlice'
 import axios from 'axios'
 import Loader from '../components/CommonComponents/Loader'
 import RecentPosts from '../components/CommonComponents/RecentPosts'
 import CategoriesCard from '../components/CommonComponents/CategoriesCard'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
     const dispatch = useDispatch();
-
+    const navigate = useNavigate('/login')
+    const { loggendId } = useSelector(state => state.blog)
     const checkAuthentication = async () => {
         try {
             const response = await axios.get('/auth/verify');
-            dispatch(SetLoggendId(response.data));
+            dispatch(SetLoggendId(response.data.id));
+            dispatch(SetLoggedUser(response.data.username));
             dispatch(SetIsAuth(true));
         } catch (error) {
             console.log('Error', error);
             dispatch(SetIsAuth(false));
             dispatch(SetLoggendId(''));
+            dispatch(SetLoggedUser(''));
+            navigate('/login')
         }
     };
 
@@ -40,7 +45,7 @@ const Home = () => {
                 setLoader(false); // Set loader to false once data is fetched
                 return postsData;
             } catch (error) {
-                console.error('Error fetching posts:', error.message);
+                console.error('Error fetching posts:', error.response.data.err);
                 setLoader(false); // Make sure to set loader to false in case of an error
             }
         };
@@ -59,16 +64,12 @@ const Home = () => {
                             <div className='md:w-[65%] w-full'>
                                 <Posts posts={posts} loader={loader} />
                             </div>
-                            <div className='lg:w-[30%] md:w-[35%] w-full h-full relative'>
-                                <div className='sticky top-0 h-full'>
-                                    <div className='h-full flex flex-col space-y-6'>
-                                        <RecentPosts posts={posts} />
-                                        <CategoriesCard />
-                                    </div>
+                            <div className='lg:w-[30%] md:w-[35%] block relative items-start w-full  '>
+                                <div className='md:sticky top-0   flex flex-col space-y-6'>
+                                    <RecentPosts posts={posts} />
+                                    <CategoriesCard />
                                 </div>
                             </div>
-
-
                         </div>
                     )
             }

@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { SetIsAuth, SetLoggendId } from '../redux/blogSlice/blogSlice';
 
 const Login = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const [data, setData] = useState({
     email: '',
@@ -14,7 +15,32 @@ const Login = () => {
   })
 
   const [err, setErr] = useState('')
+  const { loggendId } = useSelector(state => state.blog)
+  const checkAuthentication = async () => {
+    try {
+      const response = await axios.get('/auth/verify');
+      dispatch(SetLoggendId(response.data.id));
+      dispatch(SetLoggedUser(response.data.username));
+      dispatch(SetIsAuth(true));
+    } catch (error) {
+      console.log('Error', error);
+      dispatch(SetIsAuth(false));
+      dispatch(SetLoggendId(''));
+      dispatch(SetLoggedUser(''));
 
+    }
+  };
+
+  useEffect(() => {
+    checkAuthentication();
+    if (loggendId !== '') {
+      const isLoginPage = window.location.pathname === '/login';
+      if (isLoginPage) {
+        navigate('/');
+      }
+    }
+
+  }, [loggendId])
 
   const handleLogin = async (e) => {
     e.preventDefault()

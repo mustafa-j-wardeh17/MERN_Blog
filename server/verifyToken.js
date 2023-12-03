@@ -9,7 +9,8 @@ export const verifyToken = (req, res, next) => {
         if (err) {
             return res.status(403).json("Token in not valid!")
         }
-        req.userId = decoded.id
+        req.id = decoded.id
+        req.username = decoded.username
         next()
     })
 }

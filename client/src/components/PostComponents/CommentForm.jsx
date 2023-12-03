@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 
 const CommentForm = ({ data }) => {
-    const { loggendId } = useSelector(state => state.blog)
+    const { loggendId, loggedUser } = useSelector(state => state.blog)
     const [commentData, setCommentData] = useState({
         comment: "",
         name: '',
@@ -16,7 +16,7 @@ const CommentForm = ({ data }) => {
         try {
             await axios.post(`/comment/create/${data._id}`, {
                 comment: commentData.comment,
-                author: commentData.name,
+                username: loggedUser,
                 userId: loggendId
             })
             setCommentData({
@@ -56,8 +56,9 @@ const CommentForm = ({ data }) => {
                     value={commentData.comment}
                     placeholder='Comment'
                     onChange={(e) => setCommentData({ ...commentData, comment: e.target.value })}
-                    className='w-full text-[13px] resize-y p-3 min-h-[160px] bg-[#efbed8]/10 rounded-md  focus:outline-none' />
-                <div className='flex md:flex-row text-neutral-600 flex-col gap-4'>
+                    className='w-full text-[13px] resize-y p-3 min-h-[160px] bg-[#efbed8]/10 rounded-md  focus:outline-none'
+                />
+                {/* <div className='flex md:flex-row text-neutral-600 flex-col gap-4'>
                     <input
                         value={commentData.name}
                         type='text'
@@ -70,7 +71,7 @@ const CommentForm = ({ data }) => {
                         placeholder='Email'
                         onChange={(e) => setCommentData({ ...commentData, email: e.target.value })}
                         className='md:w-[50%] w-full px-3 bg-[#efbed8]/10 py-1 rounded-md   focus:outline-none' />
-                </div>
+                </div> */}
                 <br />
                 <div className='flex flex-col space-y-1'>
                     <button

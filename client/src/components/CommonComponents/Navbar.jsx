@@ -4,10 +4,12 @@ import { CiSearch } from "react-icons/ci";
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { SetLoggendId } from '../../redux/blogSlice/blogSlice';
 
 const Navbar = () => {
     const { isAuth } = useSelector(state => state.blog)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [Menu, setMenu] = useState(false)
     const [searchIcon, setSearcgIcon] = useState(false)
     const [searchValue, setSearchValue] = useState('')
@@ -57,6 +59,7 @@ const Navbar = () => {
             const response = await axios.get('/auth/logout')
             if (response.data.Status === "Success") {
                 location.reload()
+                dispatch(SetLoggendId(''))
             }
             else {
                 alert("error")
@@ -68,7 +71,7 @@ const Navbar = () => {
 
     }
     return (
-        <div className='flex justify-between items-center mb-5 '>
+        <div className='flex justify-between text-white items-center mb-5 '>
             <Link to={'/'} className='flex items-center space-x-2 cursor-pointer'  >
                 <img src='/logo.svg' className='w-[30px] ' />
                 <h3>CodeBlog</h3>
@@ -80,7 +83,7 @@ const Navbar = () => {
                     onChange={(e) => handleSearch(e)}
                     type='text'
                     placeholder='search posts'
-                    className={`w-240  border sm:py-2 w-full py-1 rounded-full transition-all ${searchIcon ? 'px-5' : 'px-3'}`}
+                    className={`w-240 bg-transparent border-2 sm:py-2 w-full py-1 rounded-full transition-all focus:outline-none ${searchIcon ? 'px-5' : 'px-3'}`}
                 />
                 <CiSearch size={22} className={`${searchIcon ? 'flex' : 'hidden'} cursor-pointer absolute right-3`}
                     onClick={handleSubmitSearch}
@@ -91,7 +94,7 @@ const Navbar = () => {
             {
                 isAuth ?
                     (
-                        <div onClick={handleMenu} className='cursor-pointer text-neutral-600 hover:text-neutral-800'>
+                        <div onClick={handleMenu} className='cursor-pointer  hover:text-neutral-800'>
                             <IoIosMenu size={32} />
                         </div>
                     )

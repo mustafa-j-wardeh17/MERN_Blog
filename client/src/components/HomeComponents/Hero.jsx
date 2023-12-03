@@ -4,7 +4,7 @@ import HeroCard from './HeroCard'
 const Hero = () => {
     return (
         <div className='py-12'>
-            <h1 className='md:text-[28px] text-[20px] text-neutral-700 font-bold mb-8'>Featured Posts</h1>
+            <h1 className='md:text-[28px] text-[20px] text-white font-bold mb-8'>Featured Posts</h1>
             <div className='w-full flex md:flex-row flex-col space-y-6 md:justify-between md:space-y-0 md:space-x-6'>
                 <div className='relative flex items-end md:h-[400px] h-[400px] lg:w-[48%]  md:w-[55%] w-full rounded-md overflow-hidden bg-black/20 hover:bg-black/10'>
                     <img src='/headset.webp' className='absolute w-full h-full z-[-999]' />
