@@ -73,7 +73,7 @@ const Navbar = () => {
     return (
         <div className='flex justify-between text-white items-center mb-5 '>
             <Link to={'/'} className='flex items-center space-x-2 cursor-pointer'  >
-                <img src='/logo.svg' className='w-[30px] ' />
+                <img src='/bird.svg' className='w-[40px] h-[40px] rounded-full' />
                 <h3>CodeBlog</h3>
             </Link>
             <form onSubmit={handleSubmitSearch} className='relative w-[40%] flex items-center'>

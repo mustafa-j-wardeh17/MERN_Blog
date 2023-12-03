@@ -19,7 +19,7 @@ const RecentPosts = ({ posts }) => {
                             <img src={post.image} className='h-[50px] w-[50px] rounded-full' />
                             <div className='flex flex-col justify-between text-[14px] text-neutral-600 '>
                                 <p>{post.createdAt.slice(0, 10)}</p>
-                                <p>{post.title}</p>
+                                <p>{post.title.length>23?post.title.slice(0,20)+'...':post.title}</p>
                             </div>
                         </div>
                     )
