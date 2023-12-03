@@ -45,8 +45,8 @@ export const updateUser = async (req, res) => {
         const hashPassword = await bcrypt.hash(password, salt)
         const updatedUser = await User.findByIdAndUpdate(userId,
             {
-                username:username,
-                image:image,
+                username: username,
+                image: image,
                 email: email,
                 password: hashPassword
 
@@ -74,10 +74,10 @@ export const deleteUser = async (req, res) => {
         await User.findByIdAndDelete(userId)
         await Post.deleteMany({ userId: userId })
         await Comment.deleteMany({ userId: userId })
-        res.status(200).json('User deleted successfully')
-        res.redirect('/login');
+        res.clearCookie('token')
+        return res.status(200).json('User deleted successfully')
     }
     catch (err) {
-        return res.status(500).json({err:"Something went wrong"})
+        return res.status(500).json({ err: "Something went wrong" })
     }
 } 
