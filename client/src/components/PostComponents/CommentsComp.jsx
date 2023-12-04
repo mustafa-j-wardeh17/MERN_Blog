@@ -18,6 +18,7 @@ const CommentsComp = ({ data }) => {
         setAddComment(data.comment)
         setEditMode(true)
     }
+
     const deleteComment = async (id) => {
         try {
             const response = await axios.delete(`/comment/delete/${id}`)
@@ -30,7 +31,7 @@ const CommentsComp = ({ data }) => {
     }
     useEffect(() => {
         fetchPostComment()
-    }, [comments])
+    }, [comments,loggendId])
 
     const fetchPostComment = async () => {
         try {

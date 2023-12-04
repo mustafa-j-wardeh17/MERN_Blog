@@ -191,7 +191,7 @@ const ProfilePage = () => {
                             </div>
 
                             <div className={`${deleteState ? 'flex' : 'hidden'} absolute flex justify-center items-center z-[999] transform left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%] w-full h-full bg-transparent`}>
-                                <div className='p-5 flex flex-col space-y-2 bg-gray-50 shadow-md z-[100] md:w-[420px] md:h-[310px] sm:w-[70%] sm:h-[40%] w-[85%] h-[50%] rounded-xl'>
+                                <div className='p-5 flex flex-col space-y-2 bg-gray-50 shadow-md z-[100] md:w-[420px] md:h-[310px] sm:w-[70%] sm:h-[45%] w-[85%] h-[50%] rounded-xl'>
                                     <div className='flex justify-end'>
                                         <IoMdClose size={24} className='text-neutral-500' />
                                     </div>

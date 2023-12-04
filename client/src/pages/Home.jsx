@@ -51,7 +51,6 @@ const Home = () => {
                 setLoader(false); // Make sure to set loader to false in case of an error
             }
         };
-        console.log('search text  '+ searchText)
         fetchPosts();
     }, [searchText]);
     return (
