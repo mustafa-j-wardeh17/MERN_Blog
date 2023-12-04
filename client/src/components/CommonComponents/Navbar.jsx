@@ -4,7 +4,7 @@ import { CiSearch } from "react-icons/ci";
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { SetLoggendId } from '../../redux/blogSlice/blogSlice';
+import { SetLoggendId, SetSearchText } from '../../redux/blogSlice/blogSlice';
 
 const Navbar = () => {
     const { isAuth } = useSelector(state => state.blog)
@@ -13,6 +13,8 @@ const Navbar = () => {
     const [Menu, setMenu] = useState(false)
     const [searchIcon, setSearcgIcon] = useState(false)
     const [searchValue, setSearchValue] = useState('')
+    const { searchText } = useSelector(state => state.blog)
+
     const handleMenu = (e) => {
         e.stopPropagation();
 
@@ -30,6 +32,9 @@ const Navbar = () => {
         e.preventDefault(e)
         setSearchValue(e.target.value)
     }
+    useEffect(() => {
+        dispatch(SetSearchText(searchValue))
+    }, [searchValue])
 
     const handleSubmitSearch = () => {
         setSearchValue('')
@@ -82,7 +87,7 @@ const Navbar = () => {
                     value={searchValue}
                     onChange={(e) => handleSearch(e)}
                     type='text'
-                    placeholder='search posts'
+                    placeholder={`search posts by it's title `}
                     className={`w-240 bg-transparent border-2 sm:py-2 w-full py-1 rounded-full transition-all focus:outline-none ${searchIcon ? 'px-5' : 'px-3'}`}
                 />
                 <CiSearch size={22} className={`${searchIcon ? 'flex' : 'hidden'} cursor-pointer absolute right-3`}

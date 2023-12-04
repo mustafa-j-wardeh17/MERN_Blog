@@ -58,20 +58,26 @@ const MyPosts = () => {
       {
         posts.length > 0 ?
           (
-            <div className='flex flex-col space-y-2'>
+            <div className='flex flex-col space-y-4 w-full'>
               {
                 posts.map((post) => (
-                  <div key={post._id} className='bg-neutral-100   flex space-x-4 w-full bg-white/95 rounded-md p-2 overflow-hidden h-[48%] '>
-                    <div className=' h-full w-[220px] rounded-md overflow-hidden'>
-                      <img onClick={() => navigate(`/post/${post._id}`)} src={post.image} className='cursor-pointer object-fill w-full h-full aspect-square' />
+                  <div key={post._id} className='   flex space-x-4 w-full  rounded-md p-2 overflow-hidden h-[48%] bg-neutral-100 '>
+                    <div className='  w-full md:w-[500px] rounded-md overflow-hidden'>
+                      <img onClick={() => navigate(`/post/${post._id}`)} src={post.image} className='cursor-pointer object-fill w-full aspect-square transition-all hover:opacity-50' />
                     </div>
                     <div className='flex flex-col space-y-2 justify-center w-full'>
-                      <h3 className='text-[12px] text-purple-600 font-bold tracking-wider space-x-1'>{post.categories}</h3>
-                      <p onClick={() => navigate(`/post/${post._id}`)} className='cursor-pointer text-[14px] text-neutral-600 font-bold'>{post.title}</p>
-                      <p className='text-[12px] text-neutral-400  tracking-wider'>{post.createdAt.slice(0, 10)}</p>
-                      <div className='w-full flex  items-end justify-end'>
-                        <button onClick={() => handleDeletePost(post._id)} className='text-white font-bold rounded-md shadow-md bg-red-500 h-[25px] text-[13px]  px-3'>Delete</button>
+                      <div className='text-[12px] md:text-[18px] sm:text-[16px] text-purple-600 font-bold tracking-wider flex space-x-1'>
+                        {
+                          post.categories.map((category, index) => (
+                            <p key={index}>{category}</p>
+                          ))
+                        }
                       </div>
+                      <h1 onClick={() => navigate(`/post/${post._id}`)} className='cursor-pointer md:text-[22px] sm:text-[18px] text-[14px] text-neutral-600 font-bold transition-all hover:opacity-50'>{post.title}</h1>
+                      <p className='text-[12px]  md:text-[18px] sm:text-[16px] text-neutral-400  tracking-wider'>{post.createdAt.slice(0, 10)}</p>
+                    </div>
+                    <div className='w-full flex  items-end justify-end'>
+                      <button onClick={() => handleDeletePost(post._id)} className='text-white font-bold rounded-md shadow-md bg-red-500 h-[25px] text-[13px]  px-3'>Delete</button>
                     </div>
                   </div>
                 ))
@@ -80,7 +86,11 @@ const MyPosts = () => {
           )
           :
           (
-            <h1>There is no posts to show you can create your first post from here <span className='flex'></span></h1>
+            <div className='flex flex-col min-h-[800px] items-center justify-center space-y-6'>
+              <h1 className='text-[18px]'>There is no posts to show you can create your first post from here </h1>
+              <button onClick={() => navigate('/createpost')} className='text-white font-bold bg-blue-500 w-[180px] py-2 rounded-md shadow-lg'>Create Post</button>
+
+            </div>
           )
       }
 

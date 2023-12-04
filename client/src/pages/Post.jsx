@@ -51,11 +51,11 @@ const Post = () => {
   }, [])
 
   return (
-    <div className='w-full mt-6 flex flex-col'>
+    <div className='w-full min-h-screen mt-6 flex flex-col'>
       {
         loader
           ? (
-            <div className='shadow-2xl  p-6'>
+            <div className='shadow-2xl flex  min-h-screen items-center p-6'>
               <Loader />
             </div>
           )

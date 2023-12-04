@@ -80,7 +80,7 @@ const CreatePost = () => {
       setPost({
         title: '',
         desc: '',
-        image: '',
+        image: '/computer.jpg',
       })
       setErr('')
       setLoading(false)

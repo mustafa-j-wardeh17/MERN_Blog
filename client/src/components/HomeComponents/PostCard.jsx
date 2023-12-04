@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import { CiTimer } from "react-icons/ci";
@@ -11,6 +11,7 @@ const PostCard = ({ data }) => {
     const handlePostPage = (id) => {
         navigate(`/post/${id}`)
     }
+
     return (
         <div className='w-full bg-white p-4 shadow-lg rounded-md'>
             <div onClick={() => handlePostPage(data._id)} className='w-full shadow-sm cursor-pointer rounded-md overflow-hidden'>
@@ -40,7 +41,9 @@ const PostCard = ({ data }) => {
                         }
                     </div>
                 </div>
-                <div className='text-center'>{data.desc.length > 20 ? parse((data.desc.slice(0, 150) + '...')) : parse(data.desc)}</div>
+
+
+
                 <button onClick={() => handlePostPage(data._id)} className='text-center px-6 py-2 bg-[#e70d8d] rounded-full text-neutral-100'>Continue Reading</button>
             </div>
         </div>

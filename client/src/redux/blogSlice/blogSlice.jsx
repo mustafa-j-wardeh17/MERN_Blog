@@ -5,7 +5,10 @@ const initialState = {
     loggendId: '',
     loggedUser: '',
     createMode: false,
-    categories: ['computer', 'programming', 'gaming', 'artificial intelligence']
+    categories: ['computer', 'programming', 'gaming', 'artificial intelligence'],
+    postsData: [],
+    searchPosts: [],
+    searchText: '',
 }
 
 export const blogSlice = createSlice({
@@ -29,10 +32,24 @@ export const blogSlice = createSlice({
             newArray.push(action.payload)
             state.categories = newArray
         },
+        SetPosts: (state, action) => {
+            state.postsData = action.payload
+        },
+        SetSearchText: (state, action) => {
+            state.searchText = action.payload
+        },
+        SetSearchPosts: (state, action) => {
+            if (action.payload === '') {
+                state.searchPosts = state.postsData
+            }
+            else {
+                state.searchPosts = state.postsData.filter(post => post.title.toLowerCase().includes(action.payload.toLowerCase().trim()))
+            }
+        }
 
     }
 });
 
-export const { SetIsAuth, SetLoggendId, SetLoggedUser, SetCreateMode, setCategories } = blogSlice.actions;
+export const { SetIsAuth, SetLoggendId, SetPosts, SetSearchText, SetSearchPosts, SetLoggedUser, SetCreateMode, setCategories } = blogSlice.actions;
 
 export default blogSlice.reducer;
