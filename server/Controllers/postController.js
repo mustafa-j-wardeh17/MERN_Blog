@@ -55,7 +55,22 @@ export const getAllPost = async (req, res) => {
     }
 }
 
-
+//--------------------------------------------
+//--------------  User Posts -----------------
+//--------------------------------------------
+export const getUserPosts = async (req, res) => {
+    const userId = req.id
+    try {
+        const posts = await Post.find({ userId })
+        if (!posts) {
+            return res.status(500).json({ err: "There is no post to show" })
+        }
+        res.status(200).json(posts)
+    }
+    catch (err) {
+        return res.status(500).json({ err: "Something went wrong" })
+    }
+}
 
 //--------------------------------------------
 //----------------Get Post -------------------

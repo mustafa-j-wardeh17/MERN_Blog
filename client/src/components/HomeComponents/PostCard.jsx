@@ -9,7 +9,7 @@ const PostCard = ({ data }) => {
     const navigate = useNavigate()
 
     const handlePostPage = (id) => {
-        navigate(`/${id}`)
+        navigate(`/post/${id}`)
     }
     return (
         <div className='w-full bg-white p-4 shadow-lg rounded-md'>

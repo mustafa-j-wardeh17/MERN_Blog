@@ -43,6 +43,7 @@ const Post = () => {
       catch (err) {
         console.log(err)
         setLoader(false)
+        navigate('/*')
       }
     }
     getPost()
