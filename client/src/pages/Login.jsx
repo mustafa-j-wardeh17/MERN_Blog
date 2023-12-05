@@ -5,8 +5,10 @@ import { FaApple } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { SetIsAuth, SetLoggedUser, SetLoggendId } from '../redux/blogSlice/blogSlice';
+import Loader from '../components/CommonComponents/Loader';
 
 const Login = () => {
+  const [loader, setLoader] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [data, setData] = useState({
@@ -16,7 +18,7 @@ const Login = () => {
 
   const [err, setErr] = useState('')
   const { loggendId } = useSelector(state => state.blog)
-  
+
   const checkAuthentication = async () => {
     try {
       const response = await axios.get('/auth/verify');
@@ -45,6 +47,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault()
     try {
+      setLoader(true)
       await axios.post('/auth/login', { email: data.email, password: data.password })
       setErr('')
       setData({
@@ -52,6 +55,7 @@ const Login = () => {
         password: ''
       })
       navigate('/')
+      setLoader(false)
     }
     catch (error) {
       if (error.response.status === 401 && error.response) {
@@ -68,7 +72,7 @@ const Login = () => {
 
   return (
     <div className='w-full h-screen bg-purple-50/20  flex flex-col justify-center items-center'>
-      <div className='shadow-lg flex flex-col justify-center  rounded-md shadow-green-100 bg-white h-[90%] p-4 space-y-4 px-[60px] w-[420px] '>
+      <div className='relative shadow-lg flex flex-col justify-center  rounded-md shadow-green-100 bg-white h-[90%] p-4 space-y-4 px-[60px] w-[420px] '>
         <div className='flex flex-col items-center'>
           <img src='/logo.svg' className='w-[30px] h-[30px]' />
           <h1 className='font-bold tracking-wider text-center text-[26px]'>Login</h1>
@@ -109,6 +113,9 @@ const Login = () => {
           <Link to={'/register'} className='text-purple-600 '>
             Create account
           </Link>
+        </div>
+        <div className={`${loader === true ? 'flex' : 'hidden'} justify-center pr-[110px] items-center absolute w-full h-full`}>
+          <Loader />
         </div>
       </div>
     </div>

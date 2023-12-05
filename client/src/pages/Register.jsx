@@ -4,12 +4,13 @@ import { FaApple } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { SetIsAuth, SetLoggendId } from '../redux/blogSlice/blogSlice'
+import { SetIsAuth, SetLoggedUser, SetLoggendId } from '../redux/blogSlice/blogSlice'
 import { FaPlus } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
+import Loader from '../components/CommonComponents/Loader'
 
 const Register = () => {
-
+  const [loader, setloader] = useState(false)
   const dispatch = useDispatch()
   const { loggendId } = useSelector(state => state.blog)
   const [data, setData] = useState({
@@ -51,7 +52,6 @@ const Register = () => {
 
   useEffect(() => {
     checkAuthentication();
-    console.log('userId' + loggendId)
     if (loggendId !== '') {
       const isLoginPage = window.location.pathname === '/register';
       if (isLoginPage) {
@@ -70,6 +70,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
+      setloader(true)
       setErr(false);
       await axios.post('/auth/register', {
         image: data.image,
@@ -86,6 +87,7 @@ const Register = () => {
         confirmPassword: ''
       });
       navigate('/login');
+      setloader(false)
 
     } catch (error) {
       // Handle error response
@@ -107,7 +109,7 @@ const Register = () => {
 
   return (
     <div className='w-full h-screen bg-purple-50/20 flex  justify-center items-center'>
-      <div className='shadow-lg shadow-green-100 flex flex-col justify-center rounded-md bg-white  py-8  px-[60px] w-[420px] '>
+      <div className='relative shadow-lg shadow-green-100 flex flex-col justify-center rounded-md bg-white  py-8  px-[60px] w-[420px] '>
         <div className='flex flex-col items-center'>
           <img src='/logo.svg' className='w-[30px] h-[30px]' />
           <h1 className='font-bold tracking-wider text-center text-[26px]'>Register</h1>
@@ -169,6 +171,9 @@ const Register = () => {
           <Link to={'/login'} className='text-purple-500 '>
             Sign in
           </Link>
+        </div>
+        <div className={`${loader === true ? 'flex' : 'hidden'} justify-center pr-[110px] items-center absolute w-full h-full`}>
+          <Loader />
         </div>
       </div>
     </div>
