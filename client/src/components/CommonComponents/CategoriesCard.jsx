@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { IoMdAdd } from "react-icons/io";
+import { useNavigate } from 'react-router-dom';
+import { ImProfile } from "react-icons/im";
+import { LuDatabase } from "react-icons/lu";
 
 const CategoriesCard = ({ }) => {
+    const navigate = useNavigate()
     const [selectedCategory, setSelectedCategory] = useState('')
     const { categories } = useSelector(state => state.blog)
     const [currentCategories, setCurrentCategories] = useState([])
@@ -10,19 +15,30 @@ const CategoriesCard = ({ }) => {
     }, [categories])
     return (
         <div className=' flex flex-col bg-white/95 w-full p-6 rounded-md shadow-md'>
-            <h1 className='font-bold'>Category</h1>
+            <h1 className='font-bold'>Important Links</h1>
             <div className='border my-3' />
-            <div className='flex flex-col text-[14px] text-neutral-500 space-y-4 mt-4'>
-                {
-                    currentCategories?.map((category, index) => (
-                        <div key={index} className='flex flex-col '>
-                            <p onClick={() => setSelectedCategory(category)} className={`${selectedCategory === category ? 'text-black' : 'text-neutral-500'} capitalize cursor-pointer hover:text-black`}>{category}</p>
-                            < div className='border ' />
-                        </div>
-                    )
-                    )
-                }
+            <div className='flex flex-col text-[14px] w-full text-neutral-500 space-y-1 mt-4'>
+                <button onClick={() => navigate('/profile')} className={`$text-neutral-500 capitalize cursor-pointer flex w-full items-center space-x-2  hover:text-black`} >
+                    <ImProfile />
+                    <p>Profile Page</p>
+                </button>
+                <div className='border ' />
             </div>
+            <div className='flex flex-col text-[14px] w-full text-neutral-500 space-y-1 mt-4'>
+                <button onClick={() => navigate('/myposts')}  className={`$text-neutral-500 capitalize cursor-pointer flex w-full items-center space-x-2  hover:text-black`} >
+                    <LuDatabase  />
+                    <p>My Posts</p>
+                </button>
+                <div className='border ' />
+            </div>
+            <div className='flex flex-col text-[14px] w-full text-neutral-500 space-y-1 mt-4'>
+                <button onClick={() => navigate('/createpost')}  className={`$text-neutral-500 capitalize cursor-pointer flex w-full items-center space-x-2  hover:text-black`} >
+                    <IoMdAdd />
+                    <p>Create Post</p>
+                </button>
+                <div className='border ' />
+            </div>
+
         </div>
     )
 }

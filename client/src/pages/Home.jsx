@@ -55,7 +55,7 @@ const Home = () => {
     }, [searchText]);
     return (
         <div className='w-full flex flex-col '>
-            <Hero />
+            <Hero posts={posts} loader={loader} />
             {
                 loader ?
                     (<Loader />)

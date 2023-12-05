@@ -16,7 +16,7 @@ const PostDetails = ({ data }) => {
                 {parse(data.desc)}
             </div>
             <div className='flex space-x-3 items-center'>
-                <p className='font-bold text-neutral-700'>Categories</p>
+                {/* <p className='font-bold text-neutral-700'>Categories</p>
                 <div className='flex space-x-2' >
                     {
                         data.categories?.map((cat) => (
@@ -25,7 +25,7 @@ const PostDetails = ({ data }) => {
                             </p>
                         ))
                     }
-                </div>
+                </div> */}
             </div>
 
         </div>

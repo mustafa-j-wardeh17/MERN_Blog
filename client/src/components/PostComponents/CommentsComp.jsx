@@ -6,6 +6,7 @@ import { MdDelete } from "react-icons/md";
 import { MdPublish } from "react-icons/md";
 
 import { SetIsAuth, SetLoggendId } from '../../redux/blogSlice/blogSlice';
+import toast from 'react-hot-toast';
 
 const CommentsComp = ({ data }) => {
     const { loggendId, loggedUser } = useSelector(state => state.blog)
@@ -24,6 +25,8 @@ const CommentsComp = ({ data }) => {
             const response = await axios.delete(`/comment/delete/${id}`)
             dispatch(SetLoggendId(data.userId))
             dispatch(SetIsAuth(true))
+            toast.error('Comment Deleted Successfully')
+
         }
         catch (error) {
             console.log(error.response.err)
@@ -31,7 +34,7 @@ const CommentsComp = ({ data }) => {
     }
     useEffect(() => {
         fetchPostComment()
-    }, [comments,loggendId])
+    }, [comments, loggendId])
 
     const fetchPostComment = async () => {
         try {
@@ -54,6 +57,7 @@ const CommentsComp = ({ data }) => {
             })
             setAddComment('')
             setEditMode(false)
+            toast.success('Comment Edited Successfully')
         }
         catch (error) {
             console.log(error)

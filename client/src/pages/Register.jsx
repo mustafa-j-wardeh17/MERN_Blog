@@ -106,8 +106,8 @@ const Register = () => {
   }
 
   return (
-    <div className='w-full h-screen bg-purple-50/20 flex flex-col justify-center items-center'>
-      <div className='shadow-lg shadow-green-100 flex flex-col justify-center rounded-md bg-white h-[90%] p-4  px-[60px] w-[420px] '>
+    <div className='w-full h-screen bg-purple-50/20 flex  justify-center items-center'>
+      <div className='shadow-lg shadow-green-100 flex flex-col justify-center rounded-md bg-white  py-8  px-[60px] w-[420px] '>
         <div className='flex flex-col items-center'>
           <img src='/logo.svg' className='w-[30px] h-[30px]' />
           <h1 className='font-bold tracking-wider text-center text-[26px]'>Register</h1>
@@ -145,12 +145,14 @@ const Register = () => {
 
 
         </div>
-        <form onSubmit={handleRegister} className='flex flex-col items-center  space-y-[6px] '>
+        <form onSubmit={handleRegister} className='flex flex-col items-center  space-y-[8px] '>
           <input required value={data.username} onChange={(e) => setData({ ...data, username: e.target.value })} type="text" placeholder="username" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
           <input required value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} type="email" placeholder="email" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
           <input required value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} type="password" placeholder="password" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
           <input required value={data.confirmPassword} onChange={(e) => setData({ ...data, confirmPassword: e.target.value })} type="password" placeholder="confirm password" className='w-full text-[14px] py-2 px-[15px] text-neutral-600 border rounded-md  ' />
-          <button type="submit" className='flex items-center justify-center text-center text-neutral-100 font-bold bg-purple-600 p-2 w-full rounded-md shadow-md'>Register</button>
+          <div className='w-full '>
+            <button type="submit" className='flex items-center mt-2 justify-center text-center text-neutral-100 font-bold bg-purple-600 p-2 w-full rounded-md shadow-md'>Register</button>
+          </div>
           {
             err !== null ?
               <p className='text-red-500 text-[13px]'>{err}</p>

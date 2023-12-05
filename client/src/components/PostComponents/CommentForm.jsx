@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Loader from '../CommonComponents/Loader'
+import toast from 'react-hot-toast'
 
 
 const CommentForm = ({ data }) => {
@@ -10,8 +12,10 @@ const CommentForm = ({ data }) => {
         name: '',
         email: ''
     })
+    const [loading, setLoading] = useState(false)
     const [err, setErr] = useState('')
     const handlePost = async (e) => {
+        setLoading(true)
         e.preventDefault()
         try {
             await axios.post(`/comment/create/${data._id}`, {
@@ -25,6 +29,8 @@ const CommentForm = ({ data }) => {
                 email: ''
             })
             setErr('')
+            setLoading(false)
+            toast.success(`Comment Added Successfully `)
         }
         catch (error) {
             if (error.response.status === 401 && error.response) {
@@ -39,6 +45,7 @@ const CommentForm = ({ data }) => {
             else {
                 setErr('Something went wrong!')
             }
+            setLoading(false)
         }
 
     }
@@ -51,8 +58,9 @@ const CommentForm = ({ data }) => {
             </div>
             <form
                 onSubmit={(e) => handlePost(e)}
-                className='flex w-full flex-col space-y-4 ' >
+                className='flex w-full flex-col space-y-4 relative' >
                 <textarea
+                    required
                     value={commentData.comment}
                     placeholder='Comment'
                     onChange={(e) => setCommentData({ ...commentData, comment: e.target.value })}
@@ -84,6 +92,13 @@ const CommentForm = ({ data }) => {
                     </p>
                 </div>
 
+                {
+                    loading && (
+                        <div className='absolute w-full h-full' >
+                            <Loader />
+                        </div>
+                    )
+                }
             </form>
         </div>
 

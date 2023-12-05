@@ -10,12 +10,13 @@ import { IoMdAddCircle } from "react-icons/io";
 import Loader from '../components/CommonComponents/Loader'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import toast from 'react-hot-toast'
 
 
 const CreatePost = () => {
   const navigate = useNavigate()
-  const [loading, setLoading] = useState(false)
-  const { loggendId } = useSelector(state => state.blog)
+  const [loading, setLoading] = useState(true)
+  const { loggendId, loggedUser } = useSelector(state => state.blog)
   const [err, setErr] = useState('')
   const [desc, setDesc] = useState('')
   const [post, setPost] = useState({
@@ -34,20 +35,21 @@ const CreatePost = () => {
       const response = await axios.get('/auth/verify');
       dispatch(SetLoggendId(response.data.id));
       dispatch(SetLoggedUser(response.data.username));
-
       dispatch(SetIsAuth(true));
+      setLoading(false)
     } catch (error) {
       console.log('Error', error);
       dispatch(SetIsAuth(false));
       dispatch(SetLoggedUser(''));
       dispatch(SetLoggendId(''));
+      setLoading(false)
       navigate('/login')
     }
   };
   useEffect(() => {
     checkAuthentication()
     setUserId(loggendId)
-  }, [err])
+  }, [err, loggendId])
 
 
   const handleImageChange = (e) => {
@@ -72,7 +74,7 @@ const CreatePost = () => {
       await axios.post(`/post/create/${userId}`, {
         title: post.title,
         desc: desc,
-        username,
+        username: loggedUser,
         image: post.image,
         categories
       })
@@ -84,6 +86,7 @@ const CreatePost = () => {
       })
       setErr('')
       setLoading(false)
+      toast.success(`${loggedUser} added post successfully`)
     }
     catch (error) {
       if (error.response.status === 400 && error.response) {

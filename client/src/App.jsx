@@ -13,6 +13,8 @@ import Layout from './Helper/Layout'
 import AuthRoute from './AuthRoute'
 import ProfilePage from './pages/ProfilePage'
 import Error from './pages/Error'
+import EditPost from './pages/EditPost'
+import { Toaster } from 'react-hot-toast';
 
 axios.defaults.baseURL = "http://localhost:8016"
 axios.defaults.withCredentials = true;
@@ -31,10 +33,16 @@ function App() {
           <Route path='/post/:postId' element={<Post />} />
           <Route path='/profile' element={<ProfilePage />} />
           <Route path='/createpost' element={<CreatePost />} />
+          <Route path='/editpost/:postid' element={<EditPost />} />
           <Route path='*' element={<Error />} />
         </Route>
         {/* </Route> */}
       </Routes>
+      <Toaster
+        position="bottom-left"
+        reverseOrder={false}
+        gutter={8}
+      />
     </div>
   )
 }

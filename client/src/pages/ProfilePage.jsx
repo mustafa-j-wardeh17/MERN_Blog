@@ -43,6 +43,7 @@ const ProfilePage = () => {
     };
 
     useEffect(() => {
+        setLoader(true)
         checkAuthentication();
         PreviewUser();
     }, [loggendId]);

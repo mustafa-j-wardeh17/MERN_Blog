@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { SetLoggendId, SetSearchText } from '../../redux/blogSlice/blogSlice';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
     const { isAuth } = useSelector(state => state.blog)
@@ -65,6 +66,7 @@ const Navbar = () => {
             if (response.data.Status === "Success") {
                 location.reload()
                 dispatch(SetLoggendId(''))
+                toast.success('User Logged Out Successfully')
             }
             else {
                 alert("error")
