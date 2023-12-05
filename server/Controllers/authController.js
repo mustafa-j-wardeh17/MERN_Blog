@@ -83,8 +83,13 @@ export const logoutController = (req, res) => {
 //--------------------------------------------
 
 export const verifyUser = (req, res) => {
-    res.json({
-        id: req.id,
-        username: req.username,
-    })
+    try {
+        res.json({
+            id: req.id,
+            username: req.username
+        })
+    }
+    catch (err) {
+        res.status(401).json('please login to your account')
+    }
 }

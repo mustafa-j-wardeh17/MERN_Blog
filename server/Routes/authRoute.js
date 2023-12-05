@@ -12,7 +12,7 @@ authRouter.post('/register', registerController)
 authRouter.post('/login', loginController)
 authRouter.get('/logout', logoutController)
 
-authRouter.get('/verify',verifyToken ,verifyUser)
+authRouter.get('/verify', verifyToken, verifyUser)
 
 
 

@@ -16,6 +16,7 @@ const Login = () => {
 
   const [err, setErr] = useState('')
   const { loggendId } = useSelector(state => state.blog)
+  
   const checkAuthentication = async () => {
     try {
       const response = await axios.get('/auth/verify');
@@ -23,7 +24,6 @@ const Login = () => {
       dispatch(SetLoggedUser(response.data.username));
       dispatch(SetIsAuth(true));
     } catch (error) {
-      console.log('Error', error);
       dispatch(SetIsAuth(false));
       dispatch(SetLoggendId(''));
       dispatch(SetLoggedUser(''));
