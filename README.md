@@ -36,7 +36,8 @@
   <li>Clone the repository.</li>
   <li>Navigate to the <code>client</code> and <code>server</code> directories and install dependencies using <code>npm install</code>.</li>
   <li>Set up MongoDB and update the connection string in the server's configuration.</li>
-  <li>Run the frontend and backend servers using <code>npm start</code> in the respective directories.</li>
+  <li>Run the backend servers using <code>npm start</code> in the respective directories.</li>
+  <li>Run the frontend using <code>npm start</code> in the respective directories.</li>
 </ol>
 
 <h2>Contributing</h2>
