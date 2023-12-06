@@ -27,7 +27,7 @@
   <li><strong>Backend:</strong> Node.js, Express.js for server setup.</li>
   <li><strong>Database:</strong> MongoDB for data storage.</li>
   <li><strong>Authentication:</strong> JWT for secure user authentication.</li>
-  <li><strong>Styling:</strong> CSS and/or SCSS for styling.</li>
+  <li><strong>Styling:</strong> Tailwind css for styling.</li>
 </ul>
 
 <h2>Getting Started</h2>
