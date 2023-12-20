@@ -1,7 +1,7 @@
 <h1 align="center">MERN Blog Website</h1>
 
 <p align="center">
-  <img src="link_to_project_image.png" alt="Project Image">
+  <img src="https://res.cloudinary.com/dsos2uuov/image/upload/v1703084790/my%20projects/blog/blog_xdm6iu.png" alt="Project Image">
 </p>
 
 <h2>Description</h2>
