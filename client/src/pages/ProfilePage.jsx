@@ -133,7 +133,7 @@ const ProfilePage = () => {
                     )
                     :
                     (
-                        <div className='bg-white relative rounded-md flex md:flex-row flex-col '>
+                        <div className='bg-white relative min-h-[600px] rounded-md flex md:flex-row flex-col '>
                             <div className='flex flex-col md:w-[40%] w-full border-r md:min-h-[400px] md:py-0 py-[80px] justify-center items-center space-y-2'>
                                 <div className='h-[70px] w-[70px] rounded-full bg-neutral-200 relative flex justify-center items-center overflow-hidden '>
                                     <img src={prevUser.image} className=' h-full w-full object-cover absolute z-[10]' />
@@ -155,31 +155,31 @@ const ProfilePage = () => {
                                     <button onClick={() => (navigate('/'))} className='flex text-[14px] items-center space-x-1 font-bold text-neutral-600'><IoMdArrowBack /> Back To Home</button>
                                     <h1 className='font-bold'>Edit User</h1>
                                 </div>
-                                <form onSubmit={(e) => handleUserEdit(e)} className='flex h-full text-[14px] flex-wrap gap-2'>
+                                <form onSubmit={(e) => handleUserEdit(e)} className='flex h-full items-center text-[14px] flex-wrap gap-4'>
                                     <input
                                         placeholder={prevUser.email}
-                                        className='border py-2  px-3 w-full rounded-md border-neutral-300'
+                                        className='border   h-[50px]  px-3 w-full rounded-md border-neutral-300'
                                         type='email'
                                         value={user.email}
                                         onChange={(e) => setUser({ ...user, email: e.target.value })}
                                     />
                                     <input
                                         placeholder={prevUser.username}
-                                        className='border py-2 px-3 w-full rounded-md border-neutral-300'
+                                        className='border  h-[50px]  px-3 w-full rounded-md border-neutral-300'
                                         type='text'
                                         value={user.username}
                                         onChange={(e) => setUser({ ...user, username: e.target.value })}
                                     />
                                     <input
                                         placeholder='Enter your password'
-                                        className='border py-2 px-3 w-full rounded-md border-neutral-300'
+                                        className='border  h-[50px]  px-3 w-full rounded-md border-neutral-300'
                                         type='password'
                                         value={user.password}
                                         onChange={(e) => setUser({ ...user, password: e.target.value })}
                                     />
                                     <input
                                         placeholder='Confirm Password'
-                                        className='border py-2 px-3 w-full rounded-md border-neutral-300'
+                                        className='border   h-[50px] px-3 w-full rounded-md border-neutral-300'
                                         type='password'
                                         value={user.confirmPassword}
                                         onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}

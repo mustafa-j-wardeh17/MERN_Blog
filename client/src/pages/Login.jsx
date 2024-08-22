@@ -59,9 +59,13 @@ const Login = () => {
     }
     catch (error) {
       if (error.response.status === 401 && error.response) {
+        setLoader(false)
+
         setErr(error.response.data.err)
       }
       else {
+        setLoader(false)
+
         setErr(error)
       }
     }
@@ -72,7 +76,7 @@ const Login = () => {
 
   return (
     <div className='w-full h-screen bg-purple-50/20  flex flex-col justify-center items-center'>
-      <div className='relative shadow-lg flex flex-col justify-center  rounded-md shadow-green-100 bg-white h-[90%] p-4 space-y-4 px-[60px] w-[420px] '>
+      <div className='relative shadow-lg flex flex-col justify-center  rounded-md shadow-green-100 bg-white  h-[80%] p-4 space-y-4 px-[60px] lg:w-[620px] sm:w-[80%] w-full'>
         <div className='flex flex-col items-center'>
           <img src='/logo.svg' className='w-[30px] h-[30px]' />
           <h1 className='font-bold tracking-wider text-center text-[26px]'>Login</h1>

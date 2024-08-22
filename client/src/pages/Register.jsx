@@ -92,8 +92,12 @@ const Register = () => {
     } catch (error) {
       // Handle error response
       if (error.response && error.response.status === 401) {
+        setloader(false)
+
         setErr(error.response.data.err);
       } else {
+        setloader(false)
+
         console.error(error);
         // Handle other errors
       }
@@ -109,7 +113,7 @@ const Register = () => {
 
   return (
     <div className='w-full h-screen bg-purple-50/20 flex  justify-center items-center'>
-      <div className='relative shadow-lg shadow-green-100 flex flex-col justify-center rounded-md bg-white  py-8  px-[60px] w-[420px] '>
+      <div className='relative shadow-lg shadow-green-100 flex flex-col justify-center overflow-hidden rounded-md bg-white  py-8  h-[85%] p-4 space-y-4 px-[60px] lg:w-[620px] sm:w-[80%] w-full '>
         <div className='flex flex-col items-center'>
           <img src='/logo.svg' className='w-[30px] h-[30px]' />
           <h1 className='font-bold tracking-wider text-center text-[26px]'>Register</h1>
@@ -126,7 +130,7 @@ const Register = () => {
           </div> */}
 
 
-          <div className='flex flex-row text-neutral-300 space-x-2 justify-center my-8 items-center'>
+          <div className='flex flex-row text-neutral-300 space-x-2 justify-center my-2 items-center'>
             <div className='h-[1px] w-[33%] bg-neutral-300' />
 
             <div className='h-[70px] w-[70px] rounded-full bg-neutral-200 relative flex justify-center items-center overflow-hidden '>

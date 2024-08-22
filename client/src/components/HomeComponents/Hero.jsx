@@ -15,7 +15,7 @@ const Hero = ({ posts, loader }) => {
         const getPosts = () => {
 
             if (posts.length > 2) {
-                setImagePost(posts[2])
+                setImagePost(posts[posts.length - 1])
                 setFeaturedPosts(posts.slice(0, 2))
             }
             else if (posts.length === 1 || posts.length === 2) {

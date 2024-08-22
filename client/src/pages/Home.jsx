@@ -54,7 +54,7 @@ const Home = () => {
         fetchPosts();
     }, [searchText]);
     return (
-        <div className='w-full flex flex-col '>
+        <div className='w-full min-h-screen flex flex-col '>
             <Hero posts={posts} loader={loader} />
             {
                 loader ?

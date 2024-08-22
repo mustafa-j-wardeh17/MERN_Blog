@@ -10,7 +10,7 @@ const HeroCard = ({ post }) => {
             </div>
             <div className='flex flex-col space-y-2 justify-center md:w-[220px] '>
                 <h3 className='text-[16px] text-purple-600 font-bold tracking-wider'>{post.title}</h3>
-                <p className='text-[13px] text-neutral-500 font-bold'>@ {post.username}</p>
+                <p className='text-[13px] text-neutral-500 font-bold'>@{post.username}</p>
                 <p className='text-[12px] text-neutral-400  tracking-wider'>{post.createdAt.slice(0, 10)}</p>
             </div>
         </div>

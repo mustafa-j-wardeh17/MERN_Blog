@@ -44,7 +44,7 @@ const MyPosts = () => {
       }
     }
     getPost()
-  }, [posts, loggendId])
+  }, [loggendId])
 
   const handleDeletePost = async (postId) => {
     try {

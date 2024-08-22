@@ -34,7 +34,7 @@ const CommentsComp = ({ data }) => {
     }
     useEffect(() => {
         fetchPostComment()
-    }, [comments, loggendId])
+    }, [loggendId])
 
     const fetchPostComment = async () => {
         try {

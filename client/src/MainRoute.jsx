@@ -6,7 +6,7 @@ import Footer from './components/CommonComponents/Footer'
 
 const MainRoute = () => {
     return (
-        <div className='relative w-full h-full'>
+        <div className='relative w-full min-h-screen'>
             <img src='/bg.jpg' className='absolute w-full h-full z-[-999]' />
             <div className='py-4 lg:mx-[140px] md:mx-[80px] mx-8'>
                 <Navbar />

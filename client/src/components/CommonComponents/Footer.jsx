@@ -10,7 +10,7 @@ const Footer = () => {
                     <p className='text-[13px] text-gray-50 w-[50%] text-center'>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nisl diam, gravida ut eleifend ac, dictum scelerisque tortor. Phasellus congue ex eu felis hendrerit aliquet. Integer turpis augue,
                     </p>
-                    <div className='flex justify-center w-[380px] items-center space-x-1 bg-white p-1 rounded-md'>
+                    <div className='flex justify-center md:w-[380px] items-center space-x-1 bg-white p-1 rounded-md'>
                         <input className='px-3 w-full py-1 border-neutral-800 border rounded-md ' placeholder='Enter your email' />
                         <input type='submit' className='text-white bg-neutral-800 px-2 py-1 rounded-md' value={'submit'} />
                     </div>

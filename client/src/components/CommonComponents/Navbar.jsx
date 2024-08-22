@@ -80,7 +80,9 @@ const Navbar = () => {
     return (
         <div className='flex justify-between text-white items-center mb-5 '>
             <Link to={'/'} className='flex items-center space-x-2 cursor-pointer'  >
-                <img src='/bird.svg' className='w-[40px] h-[40px] rounded-full' />
+                <div className='flex justify-center bg-white  items-center w-[35px] h-[35px] rounded-full'>
+                    <img src='/eagle.jpg' className='w-[30px] h-[30px] object-contain rounded-full' />
+                </div>
                 <h3>CodeBlog</h3>
             </Link>
             <form onSubmit={handleSubmitSearch} className='relative w-[40%] flex items-center'>
