@@ -16,7 +16,9 @@ import Error from './pages/Error'
 import EditPost from './pages/EditPost'
 import { Toaster } from 'react-hot-toast';
 
-axios.defaults.baseURL = process.env.URL_FETCH
+// console.log("url fetch is =>", process.env.URL_FETCH)
+
+axios.defaults.baseURL = 'https://mern-blog-server-two.vercel.app'
 axios.defaults.withCredentials = true;
 
 function App() {
