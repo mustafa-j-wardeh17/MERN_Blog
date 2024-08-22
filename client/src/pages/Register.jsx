@@ -113,7 +113,7 @@ const Register = () => {
 
   return (
     <div className='w-full h-screen bg-purple-50/20 flex  justify-center items-center'>
-      <div className='relative shadow-lg shadow-green-100 flex flex-col justify-center overflow-hidden rounded-md bg-white  py-8  h-[85%] p-4 space-y-4 px-[60px] lg:w-[620px] sm:w-[80%] w-full '>
+      <div className='relative shadow-lg  flex flex-col justify-center overflow-hidden rounded-md bg-[#fffefe]  py-8  h-[95%] p-4 space-y-4 px-[60px] lg:w-[620px] sm:w-[80%] w-full '>
         <div className='flex flex-col items-center'>
           <img src='/logo.svg' className='w-[30px] h-[30px]' />
           <h1 className='font-bold tracking-wider text-center text-[26px]'>Register</h1>

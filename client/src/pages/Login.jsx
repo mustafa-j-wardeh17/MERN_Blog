@@ -76,13 +76,13 @@ const Login = () => {
 
   return (
     <div className='w-full h-screen bg-purple-50/20  flex flex-col justify-center items-center'>
-      <div className='relative shadow-lg flex flex-col justify-center  rounded-md shadow-green-100 bg-white  h-[80%] p-4 space-y-4 px-[60px] lg:w-[620px] sm:w-[80%] w-full'>
+      <div className='relative shadow-lg flex flex-col justify-center  rounded-md bg-[#fffefe]  h-[80%] p-4 space-y-4 px-[60px] lg:w-[620px] sm:w-[80%] w-full'>
         <div className='flex flex-col items-center'>
           <img src='/logo.svg' className='w-[30px] h-[30px]' />
           <h1 className='font-bold tracking-wider text-center text-[26px]'>Login</h1>
           <p className='text-neutral-600 mt-2 mb-8 text-[13px]'>Remember everything important.</p>
         </div>
-        <div className='flex flex-col space-y-2 justify-center'>
+        {/* <div className='flex flex-col space-y-2 justify-center'>
           <div onClick={() => { }} className='cursor-pointer flex justify-center items-center p-2 border px-4 rounded-md transition-all hover:bg-gray-100'>
             <FcGoogle />
             <p className='text-neutral-600 text-[14px] ml-2 tracking-wider'>Continue With Google</p>
@@ -97,7 +97,7 @@ const Login = () => {
             <div className='h-[1px] w-[50%] bg-neutral-300' />
 
           </div>
-        </div>
+        </div> */}
         <form onSubmit={handleLogin} className='flex flex-col items-center space-y-[6px] '>
           <input required value={data.email} onChange={(e) => { setData({ ...data, email: e.target.value }) }} type="email" placeholder="Email" className='w-full text-[14px] py-3 px-[15px] text-neutral-600 border rounded-md  ' />
           <input required value={data.password} onChange={(e) => { setData({ ...data, password: e.target.value }) }} type="password" placeholder="password" className='w-full text-[14px] py-3 px-[15px] text-neutral-600 border rounded-md ' />

@@ -16,7 +16,7 @@ import Error from './pages/Error'
 import EditPost from './pages/EditPost'
 import { Toaster } from 'react-hot-toast';
 
-axios.defaults.baseURL = "http://localhost:8016"
+axios.defaults.baseURL = process.env.URL_FETCH
 axios.defaults.withCredentials = true;
 
 function App() {
