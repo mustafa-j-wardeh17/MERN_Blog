@@ -21,16 +21,10 @@ mongoose.connect(process.env.MONGO_URL)
 
 const app = express()
 
-const allowedOrigins = ['https://mern-blog-ecru-three.vercel.app'];
 
 app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+    origin:["https://mern-blog-ecru-three.vercel.app"],
+    methods:["POST","GET","PATCH","DELETE"],
     credentials: true, // Allows cookies and other credentials to be sent
 }));
 app.use(express.json({ limit: '50mb' }))
