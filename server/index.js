@@ -23,10 +23,10 @@ const app = express()
 
 
 app.use(cors({
-    origin:["https://mern-blog-ecru-three.vercel.app"],
-    methods:["POST","GET","PATCH","DELETE"],
-    credentials: true, // Allows cookies and other credentials to be sent
+  origin: 'https://mern-blog-ecru-three.vercel.app',
+  credentials: true
 }));
+
 app.use(express.json({ limit: '50mb' }))
 app.use(cookieParser())
 
