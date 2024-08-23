@@ -16,7 +16,6 @@ import Error from './pages/Error'
 import EditPost from './pages/EditPost'
 import { Toaster } from 'react-hot-toast';
 
-// console.log("url fetch is =>", process.env.URL_FETCH)
 
 axios.defaults.baseURL = 'http://localhost:8016'
 axios.defaults.withCredentials = true;
