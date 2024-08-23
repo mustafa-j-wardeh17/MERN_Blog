@@ -18,7 +18,7 @@ const MyPosts = () => {
 
 const checkAuthentication = async () => {
   try {
-    const response = await axios.get('https://mern-blog-server-two.vercel.app/auth/verify', {
+    const response = await axios.get('/auth/verify', {
       withCredentials: true, // Ensure cookies are sent
       headers: {
         // Include token if using JWT

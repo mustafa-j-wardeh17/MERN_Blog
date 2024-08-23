@@ -17,7 +17,7 @@ import EditPost from './pages/EditPost'
 import { Toaster } from 'react-hot-toast';
 
 //test branch
-axios.defaults.baseURL = 'http://localhost:8016'
+axios.defaults.baseURL = 'https://mern-blog-server-two.vercel.app'
 axios.defaults.withCredentials = true;
 
 function App() {
