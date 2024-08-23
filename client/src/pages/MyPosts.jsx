@@ -16,30 +16,30 @@ const MyPosts = () => {
   const [posts, setPosts] = useState([])
   const [loader, setLoader] = useState(true)
 
-const checkAuthentication = async () => {
-  try {
-    const response = await axios.get('/auth/verify');
+  const checkAuthentication = async () => {
+    try {
+      const response = await axios.get('/auth/verify');
 
-    dispatch(SetLoggendId(response.data.id));
-    dispatch(SetLoggedUser(response.data.username));
-    dispatch(SetIsAuth(true));
-  } catch (error) {
-    console.error('Authentication failed:', error);
-    if (error.response) {
-      // Handle specific error cases
-      if (error.response.status === 401) {
-        console.log('Unauthorized access: Please log in again.');
+      dispatch(SetLoggendId(response.data.id));
+      dispatch(SetLoggedUser(response.data.username));
+      dispatch(SetIsAuth(true));
+    } catch (error) {
+      console.error('Authentication failed:', error);
+      if (error.response) {
+        // Handle specific error cases
+        if (error.response.status === 401) {
+          console.log('Unauthorized access: Please log in again.');
+        } else {
+          console.log('An error occurred: ' + error.response.data.message);
+        }
       } else {
-        console.log('An error occurred: ' + error.response.data.message);
+        console.log('Network error: Please check your connection.');
       }
-    } else {
-      console.log('Network error: Please check your connection.');
+      dispatch(SetIsAuth(false));
+      dispatch(SetLoggendId(''));
+      dispatch(SetLoggedUser(''));
     }
-    dispatch(SetIsAuth(false));
-    dispatch(SetLoggendId(''));
-    dispatch(SetLoggedUser(''));
-  }
-};
+  };
 
   useEffect(() => {
     checkAuthentication();
@@ -61,6 +61,7 @@ const checkAuthentication = async () => {
     try {
       await axios.delete(`/post/delete/${postId}`)
       toast.error(`${loggedUser} deleted post successfully`)
+      location.reload()
     }
     catch (error) {
       console.log(error)
@@ -96,8 +97,8 @@ const checkAuthentication = async () => {
                               <p className='text-[12px]  md:text-[18px] sm:text-[16px] text-neutral-400  tracking-wider'>{post.createdAt.slice(0, 10)}</p>
                             </div>
                             <div className='w-full flex  items-end justify-end space-x-2'>
-                              <button onClick={() => handleDeletePost(post._id)} className='text-white font-bold rounded-md shadow-md bg-red-500 h-[25px] text-[13px] items-center flex space-x-1 px-3'><FaEdit /> Delete</button>
-                              <button onClick={() => navigate(`/editpost/${post._id}`)} className='text-white font-bold rounded-md shadow-md bg-blue-500 h-[25px] text-[13px]  flex space-x-1 items-center px-3'><MdDelete /> Edit</button>
+                              <button onClick={() => handleDeletePost(post._id)} className='text-white font-bold rounded-md shadow-md bg-red-500 hover:bg-red-300 h-[25px] text-[13px] items-center flex space-x-1 px-3'><FaEdit /> Delete</button>
+                              <button onClick={() => navigate(`/editpost/${post._id}`)} className='text-white font-bold rounded-md shadow-md bg-blue-500 hover:bg-blue-300 h-[25px] text-[13px]  flex space-x-1 items-center px-3'><MdDelete /> Edit</button>
                             </div>
                           </div>
                         ))

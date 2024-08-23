@@ -23,7 +23,14 @@ const app = express()
 
 
 app.use(cors({
-  origin: 'https://mern-blog-ecru-three.vercel.app',
+  origin: [
+    'https://mern-blog-ecru-three.vercel.app',
+    'https://mern-blog-ecru-three.vercel.app/createpost',
+    'https://mern-blog-ecru-three.vercel.app/profile',
+    'https://mern-blog-ecru-three.vercel.app/myposts',
+    'https://mern-blog-ecru-three.vercel.app/editpost',
+    'https://mern-blog-ecru-three.vercel.app/post',
+  ],
   credentials: true
 }));
 
