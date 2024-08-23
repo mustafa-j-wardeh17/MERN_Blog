@@ -1,0 +1,9 @@
+.ql-editor{
+    min-height:200px;
+}
+
+.reset-styles {
+    font-weight: normal !important;
+    font-style: normal !important;
+    /* Add more style resets as needed */
+  }
