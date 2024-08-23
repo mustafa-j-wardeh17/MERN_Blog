@@ -65,7 +65,6 @@ const checkAuthentication = async () => {
     try {
       setLoader(true)
       await axios.post('/auth/login', { email: data.email, password: data.password })
-      setErr('')
       setData({
         email: '',
         password: ''
@@ -77,12 +76,12 @@ const checkAuthentication = async () => {
       if (error.response.status === 401 && error.response) {
         setLoader(false)
 
-        setErr(error.response.data.err)
+        console.log(error.response.data.err)
       }
       else {
         setLoader(false)
 
-        setErr(error)
+        console.log(error)
       }
     }
 

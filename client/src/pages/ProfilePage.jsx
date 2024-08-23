@@ -44,12 +44,12 @@ const checkAuthentication = async () => {
     if (error.response) {
       // Handle specific error cases
       if (error.response.status === 401) {
-        setErr('Unauthorized access: Please log in again.');
+        console.log('Unauthorized access: Please log in again.');
       } else {
-        setErr('An error occurred: ' + error.response.data.message);
+        console.log('An error occurred: ' + error.response.data.message);
       }
     } else {
-      setErr('Network error: Please check your connection.');
+        console.log('Network error: Please check your connection.');
     }
     dispatch(SetIsAuth(false));
     dispatch(SetLoggendId(''));
