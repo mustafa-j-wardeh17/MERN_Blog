@@ -24,7 +24,6 @@ const app = express()
 
 app.use(cors({
   origin: 'https://mern-blog-ecru-three.vercel.app',
-  methods: ["GET", "PATCH", "DELETE", "POST"],
   credentials: true
 }));
 

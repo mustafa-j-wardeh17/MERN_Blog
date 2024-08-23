@@ -59,7 +59,12 @@ export const loginController = async (req, res) => {
         }
         const token = jwt.sign({ id: user._id, username: user.username }, process.env.SECRET_KEY, { expiresIn: '3d' })
 
-        res.cookie("token", token).status(200)
+        res.cookie('token', token, {
+            httpOnly: true,          // Accessible only by the web server
+            secure: true,            // Ensures the cookie is sent over HTTPS only
+            sameSite: 'None',        // Required for cross-site requests
+            maxAge: 24 * 60 * 60 * 1000 // 1 day
+        });
         res.status(200).json(user._id)
     }
     catch (err) {
