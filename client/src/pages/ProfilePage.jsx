@@ -29,13 +29,7 @@ const ProfilePage = () => {
     })
 const checkAuthentication = async () => {
   try {
-    const response = await axios.get('/auth/verify', {
-      withCredentials: true, // Ensure cookies are sent
-      headers: {
-        // Include token if using JWT
-        Authorization: `Bearer ${token}`, // Replace with actual token if needed
-      }
-    });
+    const response = await axios.get('/auth/verify');
     dispatch(SetLoggendId(response.data.id));
     dispatch(SetLoggedUser(response.data.username));
     dispatch(SetIsAuth(true));
