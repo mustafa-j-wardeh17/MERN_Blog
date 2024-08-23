@@ -20,38 +20,33 @@ const Login = () => {
   const [err, setErr] = useState('')
   const { loggendId } = useSelector(state => state.blog)
 
-// const checkAuthentication = async () => {
-//   try {
-//     const response = await axios.get('/auth/verify', {
-//       withCredentials: true, // Ensure cookies are sent
-//       headers: {
-//         // Include token if using JWT
-//         Authorization: `Bearer ${token}`, // Replace with actual token if needed
-//       }
-//     });
-//     dispatch(SetLoggendId(response.data.id));
-//     dispatch(SetLoggedUser(response.data.username));
-//     dispatch(SetIsAuth(true));
-//   } catch (error) {
-//     console.error('Authentication failed:', error);
-//     if (error.response) {
-//       // Handle specific error cases
-//       if (error.response.status === 401) {
-//         setErr('Unauthorized access: Please log in again.');
-//       } else {
-//         setErr('An error occurred: ' + error.response.data.message);
-//       }
-//     } else {
-//       setErr('Network error: Please check your connection.');
-//     }
-//     dispatch(SetIsAuth(false));
-//     dispatch(SetLoggendId(''));
-//     dispatch(SetLoggedUser(''));
-//   }
-// };
+const checkAuthentication = async () => {
+  try {
+    const response = await axios.get('/auth/verify');
+
+    dispatch(SetLoggendId(response.data.id));
+    dispatch(SetLoggedUser(response.data.username));
+    dispatch(SetIsAuth(true));
+  } catch (error) {
+    console.error('Authentication failed:', error);
+    if (error.response) {
+      // Handle specific error cases
+      if (error.response.status === 401) {
+        setErr('Unauthorized access: Please log in again.');
+      } else {
+        setErr('An error occurred: ' + error.response.data.message);
+      }
+    } else {
+      setErr('Network error: Please check your connection.');
+    }
+    dispatch(SetIsAuth(false));
+    dispatch(SetLoggendId(''));
+    dispatch(SetLoggedUser(''));
+  }
+};
 
   useEffect(() => {
-    // checkAuthentication();
+    checkAuthentication();
     if (loggendId !== '') {
       const isLoginPage = window.location.pathname === '/login';
       if (isLoginPage) {
