@@ -65,7 +65,7 @@ const Register = () => {
   };
 
   useEffect(() => {
-    checkAuthentication();
+    // checkAuthentication();
     if (loggendId !== '') {
       const isLoginPage = window.location.pathname === '/register';
       if (isLoginPage) {

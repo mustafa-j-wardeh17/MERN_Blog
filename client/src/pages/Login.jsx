@@ -51,7 +51,7 @@ const Login = () => {
 // };
 
   useEffect(() => {
-    checkAuthentication();
+    // checkAuthentication();
     if (loggendId !== '') {
       const isLoginPage = window.location.pathname === '/login';
       if (isLoginPage) {
