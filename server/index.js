@@ -14,8 +14,8 @@ import { ErrorHandler, PageNotFound } from "./Middlewares/ErrorHandler.js";
 dotenv.config()
 
 mongoose.connect(process.env.MONGO_URL)
-    .then(() => { console.log('Connected Successfully to DB') })
-    .catch((err) => { console.log('Failed Connection to DB' + err) })
+  .then(() => { console.log('Connected Successfully to DB') })
+  .catch((err) => { console.log('Failed Connection to DB' + err) })
 
 
 
@@ -24,6 +24,7 @@ const app = express()
 
 app.use(cors({
   origin: 'https://mern-blog-ecru-three.vercel.app',
+  methods: ["GET", "PATCH", "DELETE", "POST"],
   credentials: true
 }));
 
@@ -57,5 +58,5 @@ app.use(PageNotFound)
 app.use(ErrorHandler)
 
 app.listen(8016, () => {
-    console.log('Connected Successfully to server ')
+  console.log('Connected Successfully to server ')
 })
