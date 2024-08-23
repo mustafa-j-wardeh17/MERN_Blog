@@ -4,6 +4,8 @@ import axios from 'axios';
 
 const AuthRoute = () => {
     const [userId, setUserId] = useState('')
+
+    
     const checkAuthentication = async () => {
         try {
             const response = await axios.get('/auth/verify');
